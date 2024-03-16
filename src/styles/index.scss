@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url(_common.scss);
+@font-face {
+  font-family: 'Inter';
+  src: url(../fonts/Inter-Variable.ttf) format('truetype');
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.background-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &.banner {
+    background-image: url('../images/banner.png');
+  }
+  &.banner1 {
+    background-image: url('../images/banner1.png');
+  }
+  &.introduction {
+    background-image: url('../images/introduction.png');
+  }
+  &.coreValues {
+    background-image: url('../images/giatri.png');
+  }
+  &.standard {
+    background-image: url('../images/standard.png');
+  }
+  &.capacity {
+    background-image: url('../images/capacity.png');
+  }
+  &.infrastructure {
+    background-image: url('../images/infrastructure.png');
+  }
+  &.contact-bg {
+    background-image: url('../images/contact_bg.png');
+  }
+  &.service-bg {
+    background-image: url('../images/service.png');
+  }
+  &.introduce-bg {
+    background-image: url('../images/introduction-title.png');
+  }
+}
+
+.header-menu {
+  background-color: transparent;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  .ant-menu-item,
+  .ant-menu-submenu {
+    cursor: pointer;
+
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      color: #77c373 !important;
+    }
+
+    &.ant-menu-item-selected,
+    &.ant-menu-submenu-selected {
+      font-weight: 600;
+    }
+
+    .ant-menu-submenu-arrow {
+      display: revert;
+      position: absolute;
+      right: -15px;
+      top: 55%;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+// service
+.service-wrapper {
+  .service-icon {
+    path {
+      fill: #77c373;
+    }
+  }
+
+  &:hover {
+    .service-icon {
+      path {
+        fill: #ffffff;
+      }
+    }
+  }
+}
+
+.ant-input-group-addon {
+  border: none !important;
+  background-color: #77c373 !important;
+}
+
+.text-size {
+  @media (max-width: 576px) {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+.circle-team {
+  position: relative;
+  overflow: hidden;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#carousel-item-3 {
+  background-color: #064797;
+}
+
+.myteam-image-wrapper {
+  .ant-image {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.partner-container {
+  background-image: url('../images/partner-bg.png');
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #215e74;
+    opacity: 0.8;
+  }
+
+  .partner-wrapper {
+    .ant-image {
+      overflow: hidden;
+      .zoom-in {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: 0.3s ease-in-out;
+        transition: 0.6s ease-in-out;
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #77c373;
+      transition: top 0.9s ease;
+    }
+
+    &:hover::before {
+      top: 0;
+    }
+
+    &:hover {
+      .zoom-in {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+      }
+    }
+  }
+}
+.commitmentToQuality-container {
+  background-image: url('../images/partner-bg.png');
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0.8;
+  }
+
+  .partner-wrapper {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #77c373;
+      transition: top 0.9s ease;
+    }
+
+    &:hover::before {
+      top: 0;
+    }
+  }
+}
+
+.heading-container {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #215e74;
+    opacity: 0.7;
+  }
+}
+
+.button-continue {
+  &:hover {
+    background-color: #529949;
+    color: #ffffff;
+    border: none;
+  }
+}
