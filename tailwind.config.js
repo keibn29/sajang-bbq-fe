@@ -3,7 +3,7 @@ export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
-      boxShadow: {
+      'box-shadow': {
         default: '0px 3px 10px 0px rgba(0, 0, 0, 0.25)',
       },
     },
