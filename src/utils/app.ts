@@ -1,1 +1,1 @@
-export const getPageName = () => window.location.pathname.split('/').pop() ?? '';
+export const getPageName = () => window.location.pathname.split('/').pop() || 'home';

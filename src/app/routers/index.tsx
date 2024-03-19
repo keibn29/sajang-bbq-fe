@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import NotFound from 'app/page/NotFound';
 import DefaultLayout from 'app/layout/DefaultLayout';
 import { URL } from 'constant/url';
-import { ConfigProvider } from 'antd';
 
 const DEFAULT_LAYOUT = 'default';
 const NONE_LAYOUT = 'none';
@@ -38,26 +37,18 @@ const sharedItems: ItemType[] = [
 export default function Routers() {
   const items = userItems.concat(sharedItems);
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: '#77C373',
-        },
-      }}
-    >
-      <Routes>
-        {items.map((item) => {
-          let element = item.components;
+    <Routes>
+      {items.map((item) => {
+        let element = item.components;
 
-          element = <Suspense fallback={null}>{element}</Suspense>;
+        element = <Suspense fallback={null}>{element}</Suspense>;
 
-          if (item.layout === DEFAULT_LAYOUT) {
-            element = <DefaultLayout>{element}</DefaultLayout>;
-          }
+        if (item.layout === DEFAULT_LAYOUT) {
+          element = <DefaultLayout>{element}</DefaultLayout>;
+        }
 
-          return <Route key={item.key} path={item.key} element={element} />;
-        })}
-      </Routes>
-    </ConfigProvider>
+        return <Route key={item.key} path={item.key} element={element} />;
+      })}
+    </Routes>
   );
 }

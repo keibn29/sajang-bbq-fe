@@ -3,8 +3,12 @@ export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
-      'box-shadow': {
+      boxShadow: {
         default: '0px 3px 10px 0px rgba(0, 0, 0, 0.25)',
+      },
+      backgroundImage: {
+        logo: "url('/src/assets/images/logo.png')",
+        'banner-home': "url('/src/assets/images/banner-home.png')",
       },
     },
     colors: {
@@ -22,6 +26,8 @@ export default {
       'dark-blue': '#215E74',
       'dark-green': '#529949',
       'light-gray': '#F0F0F0',
+      'dark-red': '#a31e24',
+      'dark-red-hover': '#CD2218',
     },
   },
   plugins: [],
