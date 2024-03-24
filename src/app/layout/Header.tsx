@@ -42,7 +42,7 @@ const Header = () => {
             <Link
               key={item.url}
               to={item.url}
-              className="font-bold uppercase cursor-pointer p-[20px] hover:text-dark-red"
+              className="font-bold uppercase cursor-pointer p-[20px] hover:text-primary"
             >
               <span>{item.text}</span>
             </Link>

@@ -19,4 +19,5 @@ const DefaultLayout = (props: IProps) => {
     </ConfigProvider>
   );
 };
+
 export default DefaultLayout;

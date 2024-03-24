@@ -1,7 +1,7 @@
 import { lazy, ReactElement, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from 'app/page/NotFound';
-import DefaultLayout from 'app/layout/DefaultLayout';
+import DefaultLayout from 'app/layout';
 import { URL } from 'constant/url';
 
 const DEFAULT_LAYOUT = 'default';

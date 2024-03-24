@@ -8,11 +8,11 @@ export default {
       },
       backgroundImage: {
         logo: "url('/src/assets/images/logo.png')",
-        'banner-home': "url('/src/assets/images/banner-home.png')",
+        'home-concept': "url('/src/assets/images/concept.jpg')",
       },
     },
     colors: {
-      primary: '#77C373',
+      primary: '#a31d24',
       secondary: '#666666',
       dark: '#424242',
       light: '#EBEBEB',
@@ -26,7 +26,6 @@ export default {
       'dark-blue': '#215E74',
       'dark-green': '#529949',
       'light-gray': '#F0F0F0',
-      'dark-red': '#a31e24',
       'dark-red-hover': '#CD2218',
     },
   },
