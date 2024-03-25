@@ -11,7 +11,7 @@ const DefaultLayout = (props: IProps) => {
 
   return (
     <ConfigProvider theme={{ token: { fontFamily: 'Inter, sans-serif' } }}>
-      <Layout className="bg-white">
+      <Layout className="bg-[#F0F1F0]">
         <Header />
         {children}
         <Footer />

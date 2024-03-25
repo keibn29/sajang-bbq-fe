@@ -34,7 +34,7 @@ const menus = [
 
 const Header = () => {
   return (
-    <div className="h-[70px] shadow-lg w-full fixed top-0">
+    <div className="h-[70px] shadow-lg w-full fixed top-0 z-[99] bg-white">
       <Flex className="max-w-[1425px] h-[100%] px-[90px] mx-auto" justify="space-between" align="center">
         <Link to={'/'} className="bg-logo bg-cover bg bg-center w-[100px] h-[50px]" />
         <div>
