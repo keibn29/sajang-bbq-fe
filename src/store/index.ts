@@ -1,11 +1,20 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { persistStore } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
+import auth from './authSlice';
+import app from './appSlice';
 
-// const authPersistConfig = {
-// };
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['user', 'isLogin'],
+  version: 1,
+};
 
 const reducers = {
+  auth: persistReducer(authPersistConfig, auth),
+  app,
 };
 
 const rootReducer = combineReducers(reducers);

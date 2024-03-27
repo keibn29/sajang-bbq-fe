@@ -1,13 +1,15 @@
 import { lazy, ReactElement, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from 'app/page/NotFound';
-import DefaultLayout from 'app/layout';
-import { URL } from 'constant/url';
+import CustomerLayout from 'app/layout/Customer';
+import { URL } from 'constants/url';
 
-const DEFAULT_LAYOUT = 'default';
+const CUSTOMER_LAYOUT = 'customer';
+const SYSTEM_LAYOUT = 'system';
 const NONE_LAYOUT = 'none';
 
 const Home = lazy(() => import('app/page/Home'));
+const Login = lazy(() => import('app/page/Auth'));
 
 interface ItemType {
   key: string;
@@ -16,16 +18,22 @@ interface ItemType {
   private: boolean;
 }
 
-const userItems: ItemType[] = [
+const customerItems: ItemType[] = [
   {
-    key: URL.Home,
+    key: URL.home,
     components: <Home />,
-    layout: DEFAULT_LAYOUT,
-    private: true,
+    layout: CUSTOMER_LAYOUT,
+    private: false,
   },
 ];
 
 const sharedItems: ItemType[] = [
+  {
+    key: URL.login,
+    components: <Login />,
+    layout: NONE_LAYOUT,
+    private: false,
+  },
   {
     key: '*',
     components: <NotFound />,
@@ -35,7 +43,7 @@ const sharedItems: ItemType[] = [
 ];
 
 export default function Routers() {
-  const items = userItems.concat(sharedItems);
+  const items = customerItems.concat(sharedItems);
   return (
     <Routes>
       {items.map((item) => {
@@ -43,8 +51,12 @@ export default function Routers() {
 
         element = <Suspense fallback={null}>{element}</Suspense>;
 
-        if (item.layout === DEFAULT_LAYOUT) {
-          element = <DefaultLayout>{element}</DefaultLayout>;
+        if (item.layout === CUSTOMER_LAYOUT) {
+          element = <CustomerLayout>{element}</CustomerLayout>;
+        }
+
+        if (item.layout === SYSTEM_LAYOUT) {
+          //
         }
 
         return <Route key={item.key} path={item.key} element={element} />;

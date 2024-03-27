@@ -26,7 +26,9 @@ export default {
     },
     colors: {
       primary: '#a31d24',
+      'primary-hover': '#a31d24d2',
       secondary: '#666666',
+      'secondary-hover': '#666666d2',
       dark: '#424242',
       light: '#EBEBEB',
       tertiary: '#03A9F4',
@@ -39,8 +41,10 @@ export default {
       'dark-blue': '#215E74',
       'dark-green': '#529949',
       'light-gray': '#F0F0F0',
-      'dark-red-hover': '#CD2218',
     },
   },
   plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
 };
