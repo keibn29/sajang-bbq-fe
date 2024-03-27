@@ -1,45 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { get } from 'lodash';
 import { RootState } from 'store';
+import { loading } from 'utils/app';
 import request from 'utils/request';
 
-// import request from 'util/request';
-
-export interface IUser {
-  accessToken: string;
-  deptCode: string;
-  deptName: string;
-  tokenType: string;
-  userName: string;
-}
-// export interface IParamGetUserInfo {
-//   userid: string;
-//   Authorization: string;
-// }
-// export interface IUserInfo {
-//   userId: string;
-//   userName: string;
-//   roleNo: number;
-//   roleName: string;
-//   email: string;
-// }
-
 interface IAuthState {
-  isLoading: boolean;
-  user: IUser | null;
+  user: any;
+  accessToken: string;
 }
-
-// const initUser: IUser = {
-//   accessToken: '',
-//   deptCode: '',
-//   deptName: '',
-//   tokenType: '',
-//   userName: '',
-// };
 
 const initialState: IAuthState = {
-  isLoading: false,
   user: null,
+  accessToken: '',
 };
 
 export interface IPayloadLogin {
@@ -50,10 +22,9 @@ export interface IPayloadLogin {
 export const actionLogin = createAsyncThunk('auth/actionLogin', async (data: IPayloadLogin, { rejectWithValue }) => {
   try {
     return await request({
-      url: '/common/auth/signin',
+      url: '/auth/login',
       method: 'POST',
       data,
-      headers: { ...data },
     });
   } catch (error: any) {
     return rejectWithValue(error);
@@ -65,22 +36,26 @@ export const slice = createSlice({
   initialState,
   reducers: {
     actionLogout(state) {
-      state.isLoading = false;
       state.user = null;
+      state.accessToken = '';
     },
   },
 
   extraReducers: (builder) => {
     builder
       .addCase(actionLogin.pending, (state) => {
-        state.isLoading = true;
+        // loading.on();
       })
       .addCase(actionLogin.fulfilled, (state, action) => {
-        state.user = get(action, 'payload.data');
-        state.isLoading = false;
+        const { user, accessToken } = get(action, 'payload.data');
+        state.user = user;
+        state.accessToken = accessToken;
+        // loading.off();
       })
       .addCase(actionLogin.rejected, (state) => {
-        state.isLoading = false;
+        state.user = null;
+        state.accessToken = '';
+        // loading.off();
       });
   },
 });

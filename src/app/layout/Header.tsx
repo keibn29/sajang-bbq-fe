@@ -1,34 +1,39 @@
 import { Flex } from 'antd';
+import { URL } from 'constants/url';
 import { Link } from 'react-router-dom';
 
 const menus = [
   {
-    text: 'Trang chu',
-    url: '/',
+    text: 'Trang chủ',
+    url: URL.home,
   },
   {
-    text: 'Dia diem',
-    url: '/address',
+    text: 'Địa điểm',
+    url: URL.address,
   },
   {
     text: 'Menu',
-    url: '/menu',
+    url: URL.menu,
   },
   {
-    text: 'Uu dai',
-    url: '/sale',
+    text: 'Ưu đãi',
+    url: URL.sale,
   },
   {
     text: 'Blog',
-    url: '/blog',
+    url: URL.blog,
   },
   {
     text: 'Gallery',
-    url: '/gallery',
+    url: URL.gallery,
   },
   {
-    text: 'Lien he',
-    url: '/contact',
+    text: 'Liên hệ',
+    url: URL.contact,
+  },
+  {
+    text: 'Login',
+    url: URL.login,
   },
 ];
 
@@ -36,13 +41,13 @@ const Header = () => {
   return (
     <div className="h-[70px] shadow-lg w-full fixed top-0 z-[99] bg-white">
       <Flex className="max-w-[1425px] h-[100%] px-[90px] mx-auto" justify="space-between" align="center">
-        <Link to={'/'} className="bg-logo bg-cover bg bg-center w-[100px] h-[50px]" />
+        <Link to={URL.home} className="bg-logo bg-cover bg bg-center w-[100px] h-[50px]" />
         <div>
           {menus.map((item) => (
             <Link
               key={item.url}
               to={item.url}
-              className="font-bold uppercase cursor-pointer p-[20px] hover:text-primary"
+              className="font-bold uppercase cursor-pointer p-[20px] hover:text-primary text-[#3c2311]"
             >
               <span>{item.text}</span>
             </Link>

@@ -1,7 +1,6 @@
-import { Modal } from 'antd';
+import { Button, Modal } from 'antd';
 import { useAppDispatch, useAppSelector } from 'store';
 import { actionCloseAppConfirmation, selectAppConfirmation } from 'store/appSlice';
-import ButtonCustom from '../custom/ButtonCustom';
 
 function AppConfirmation() {
   const { isOpen, type, message, title, onCancel, onSubmit } = useAppSelector(selectAppConfirmation);
@@ -29,11 +28,15 @@ function AppConfirmation() {
       onCancel={handleClose}
       footer={
         type === 'single' ? (
-          <ButtonCustom text="Xác nhận" className="p-3" onClick={handleSubmit} />
+          <Button type="primary" onClick={handleSubmit}>
+            Xác nhận
+          </Button>
         ) : (
           <div className="flex justify-end">
-            <ButtonCustom text="Hủy" className="!p-3 bg-secondary hover:bg-secondary-hover" onClick={handleCancel} />
-            <ButtonCustom text="Xác nhận" className="!p-3" onClick={handleSubmit} />
+            <Button onClick={handleCancel}>Hủy</Button>
+            <Button type="primary" onClick={handleSubmit}>
+              Xác nhận
+            </Button>
           </div>
         )
       }

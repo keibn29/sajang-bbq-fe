@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const instanceAxios = axios.create();
 
-instanceAxios.defaults.baseURL = import.meta.env.VITE_CLARE_API;
+instanceAxios.defaults.baseURL = import.meta.env.VITE_API_ENPOINT;
 instanceAxios.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8';
 instanceAxios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 instanceAxios.defaults.headers.common['x-requestid'] = uuidv4();

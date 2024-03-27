@@ -41,6 +41,7 @@ export default {
       'dark-blue': '#215E74',
       'dark-green': '#529949',
       'light-gray': '#F0F0F0',
+      link: '#5284FF',
     },
   },
   plugins: [],
