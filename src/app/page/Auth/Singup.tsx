@@ -1,5 +1,8 @@
 import { UserOutlined, LockOutlined, PhoneOutlined } from '@ant-design/icons';
-import { Form, Input, Button, Row, Col } from 'antd';
+import { Form, Input, Button, Row, Col, notification } from 'antd';
+import { useAppDispatch } from 'store';
+import { actionSetUserRegister } from 'store/authSlice';
+import request from 'utils/request';
 
 interface IProps {
   onLogin: () => void;
@@ -7,9 +10,16 @@ interface IProps {
 
 function Singup(props: Readonly<IProps>) {
   const { onLogin } = props;
+  const dispatch = useAppDispatch();
 
   const handleSignup = (values: any) => {
-    ///
+    console.log('values', values);
+    const data = { ...values, role: 'NORMAL' };
+    request({ url: '/user', method: 'POST', data }).then((res) => {
+      const { user } = res.data;
+      notification.success({ message: 'Đăng kí tài khoản thành công' });
+      dispatch(actionSetUserRegister(user));
+    });
   };
 
   return (

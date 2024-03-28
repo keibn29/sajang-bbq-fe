@@ -1,10 +1,10 @@
+import { URL } from 'constants/url';
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'store';
+import { Navigate } from 'react-router-dom';
+import { useAppSelector } from 'store';
 import { selectUser } from 'store/authSlice';
 import Login from './Login';
 import Singup from './Singup';
-import { Navigate } from 'react-router-dom';
-import { URL } from 'constants/url';
 
 function Auth() {
   const user = useAppSelector(selectUser);

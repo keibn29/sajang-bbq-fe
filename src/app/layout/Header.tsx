@@ -1,6 +1,8 @@
-import { Flex } from 'antd';
+import { Button, Flex } from 'antd';
 import { URL } from 'constants/url';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from 'store';
+import { actionLogout } from 'store/authSlice';
 
 const menus = [
   {
@@ -38,6 +40,14 @@ const menus = [
 ];
 
 const Header = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(actionLogout());
+    navigate(URL.login);
+  };
+
   return (
     <div className="h-[70px] shadow-lg w-full fixed top-0 z-[99] bg-white">
       <Flex className="max-w-[1425px] h-[100%] px-[90px] mx-auto" justify="space-between" align="center">
@@ -53,6 +63,7 @@ const Header = () => {
             </Link>
           ))}
         </div>
+        <Button onClick={handleLogout}>Log out</Button>
       </Flex>
     </div>
   );

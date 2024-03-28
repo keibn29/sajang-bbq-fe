@@ -1,6 +1,6 @@
 import { notification } from 'antd';
 import axios, { AxiosRequestConfig } from 'axios';
-import { defaultTo, get } from 'lodash';
+import { get } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 
 export const instanceAxios = axios.create();
@@ -19,7 +19,7 @@ instanceAxios.interceptors.response.use(
   },
   (error) => {
     if (!axios.isCancel(error)) {
-      const message = defaultTo(get(error, 'message'), 'ERROR');
+      const message = get(error, 'response')?.data?.messageVi ?? get(error, 'message');
       notification.error({ message });
     }
 
