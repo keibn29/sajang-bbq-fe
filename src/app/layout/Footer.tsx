@@ -25,7 +25,7 @@ const Footer = () => {
   return (
     <div>
       <div className="bg-[#332B25] text-white">
-        <Row className="w-[1300px] mx-auto py-[50px]">
+        <Row className="max-w-[1300px] mx-auto py-[50px]">
           <Col span={12}>
             <div className="text-center">
               <span className="text-xl uppercase">Follow us</span>

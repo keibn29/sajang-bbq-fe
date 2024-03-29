@@ -6,7 +6,7 @@ const Blog = () => {
       <p className="text-center">
         <span className="uppercase text-primary text-[45px] font-bold">Blog</span>
       </p>
-      <Row gutter={10} className="w-[1200px] !mx-auto">
+      <Row gutter={10} className="max-w-[1200px] !mx-auto">
         {[0, 1, 2].map((item) => (
           <Col key={item} span={8} className="px-3 min-h-[475px]">
             <div className="h-full border-b-solid border-b-[1px] border-b-[#dddddd] pb-2">

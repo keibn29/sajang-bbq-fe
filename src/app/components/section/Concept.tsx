@@ -2,7 +2,7 @@ import { Col, Row } from 'antd';
 
 const Concept = () => {
   return (
-    <Row className="w-[1200px] !mx-auto py-[50px]">
+    <Row className="max-w-[1200px] !mx-auto py-[50px]">
       <Col span={12} className="text-center mt-5 px-5">
         <p className="text-primary font-bold text-[45px]">Concept ẩm thực</p>
         <p className="text-base mt-5">
