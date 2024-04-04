@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import NotFound from 'app/page/NotFound';
 import CustomerLayout from 'app/layout/Customer';
 import { URL } from 'constants/url';
+import { Admin } from 'admin';
 
 const CUSTOMER_LAYOUT = 'customer';
 const SYSTEM_LAYOUT = 'system';
@@ -22,6 +23,12 @@ const customerItems: ItemType[] = [
   {
     key: URL.home,
     components: <Home />,
+    layout: CUSTOMER_LAYOUT,
+    private: false,
+  },
+  {
+    key: URL.admin,
+    components: <Admin />,
     layout: CUSTOMER_LAYOUT,
     private: false,
   },
