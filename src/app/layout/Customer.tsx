@@ -1,4 +1,4 @@
-import { Layout } from 'antd';
+import { ConfigProvider, Layout } from 'antd';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -10,11 +10,20 @@ const CustomerLayout = (props: IProps) => {
   const { children } = props;
 
   return (
-    <Layout className="bg-[#F0F1F0]">
-      <Header />
-      {children}
-      <Footer />
-    </Layout>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#a31d24',
+          fontFamily: 'Inter, sans-serif',
+        },
+      }}
+    >
+      <Layout className="bg-[#F0F1F0]">
+        <Header />
+        {children}
+        <Footer />
+      </Layout>
+    </ConfigProvider>
   );
 };
 

@@ -7,5 +7,8 @@ export const URL = {
   blog: '/blog',
   gallery: '/gallery',
   contact: '/contact',
-  admin: '/admin',
+  admin: {
+    admin: '/admin',
+    user: '/admin/user',
+  },
 };
