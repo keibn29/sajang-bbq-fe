@@ -1,14 +1,17 @@
 import { Modal } from 'antd';
 import useFormCustom from 'app/hooks/useFormCustom';
+import { useState } from 'react';
 import { useAppSelector } from 'store';
 import { selectAppModalForm } from 'store/appSlice';
 import { modalForm } from 'utils/app';
 
 const AppModalForm = () => {
   const { isOpen, title, apiPath, editedRowId, formElement: FormElement } = useAppSelector(selectAppModalForm);
+  const [imageUrl, setImageUrl] = useState('');
 
   const handleCloseModal = () => {
     form.resetFields();
+    setImageUrl('');
     modalForm.close();
   };
 
@@ -28,7 +31,7 @@ const AppModalForm = () => {
       onCancel={handleCloseModal}
       maskClosable={false}
     >
-      {FormElement && <FormElement form={form} />}
+      {FormElement && <FormElement form={form} imageUrl={imageUrl} onChangeImageUrl={setImageUrl} />}
     </Modal>
   );
 };

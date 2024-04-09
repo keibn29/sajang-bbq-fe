@@ -1,5 +1,5 @@
-import { UserOutlined, LockOutlined, PhoneOutlined } from '@ant-design/icons';
-import { Form, Input, Button, Row, Col, notification } from 'antd';
+import { LockOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Col, Form, Input, Row, message } from 'antd';
 import { useAppDispatch } from 'store';
 import { actionSetUserRegister } from 'store/authSlice';
 import request from 'utils/request';
@@ -16,7 +16,7 @@ function Singup(props: Readonly<IProps>) {
     const data = { ...values, role: 'NORMAL' };
     request({ url: '/user', method: 'POST', data }).then((res) => {
       const { user } = res.data;
-      notification.success({ message: 'Đăng kí tài khoản thành công' });
+      message.success('Đăng kí tài khoản thành công');
       dispatch(actionSetUserRegister(user));
     });
   };

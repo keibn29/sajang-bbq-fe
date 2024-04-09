@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { FormProps } from 'antd';
+import { IFormProps } from 'model';
 import { RootState } from 'store';
 
 export interface IConfirmation {
@@ -16,7 +16,7 @@ export interface IModalForm {
   title: string;
   apiPath: string;
   editedRowId?: number;
-  formElement: ((props: FormProps) => JSX.Element) | null;
+  formElement: ((props: IFormProps) => JSX.Element) | null;
 }
 
 export interface IPagination {
