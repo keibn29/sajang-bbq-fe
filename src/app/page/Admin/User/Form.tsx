@@ -1,12 +1,16 @@
 import { LoadingOutlined, LockOutlined, PhoneOutlined, PlusOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Col, Form, Input, Row, Select, Upload, UploadProps } from 'antd';
+import { isEmpty } from 'lodash';
 import { IFormProps } from 'model';
 import { useState } from 'react';
+import { useAppSelector } from 'store';
+import { selectAppModalForm } from 'store/appSlice';
 import { getBase64, isValisBeforeUpload } from 'utils/upload';
 
 const UserForm = (props: IFormProps) => {
   const { form, imageUrl, onChangeImageUrl } = props;
   const [isLoading, setIsLoading] = useState(false);
+  const { editedRow } = useAppSelector(selectAppModalForm);
 
   const uploadButton = (
     <button style={{ border: 0, background: 'none' }} type="button">
@@ -45,6 +49,7 @@ const UserForm = (props: IFormProps) => {
               prefix={<UserOutlined className="site-form-item-icon" />}
               placeholder="Input your email"
               allowClear
+              disabled={!isEmpty(editedRow)}
             />
           </Form.Item>
         </Col>
@@ -60,6 +65,7 @@ const UserForm = (props: IFormProps) => {
               type="password"
               placeholder="Input your password"
               allowClear
+              disabled={!isEmpty(editedRow)}
             />
           </Form.Item>
         </Col>
@@ -75,6 +81,7 @@ const UserForm = (props: IFormProps) => {
               type="password"
               placeholder="Repeate your password"
               allowClear
+              disabled={!isEmpty(editedRow)}
             />
           </Form.Item>
         </Col>

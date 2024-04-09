@@ -1,12 +1,13 @@
 import { Modal } from 'antd';
 import useFormCustom from 'app/hooks/useFormCustom';
-import { useState } from 'react';
+import { isEmpty } from 'lodash';
+import { useEffect, useState } from 'react';
 import { useAppSelector } from 'store';
 import { selectAppModalForm } from 'store/appSlice';
 import { modalForm } from 'utils/app';
 
 const AppModalForm = () => {
-  const { isOpen, title, apiPath, editedRowId, formElement: FormElement } = useAppSelector(selectAppModalForm);
+  const { isOpen, title, apiPath, editedRow, formElement: FormElement } = useAppSelector(selectAppModalForm);
   const [imageUrl, setImageUrl] = useState('');
 
   const handleCloseModal = () => {
@@ -17,9 +18,16 @@ const AppModalForm = () => {
 
   const { form, onSubmitForm } = useFormCustom({
     apiPath,
-    editedRowId,
+    editedRow,
     onClose: handleCloseModal,
   });
+
+  useEffect(() => {
+    if (!isEmpty(editedRow)) {
+      form.setFieldsValue({ ...editedRow, password: 'hardcode', rePassword: 'hardcode', avatar: '' });
+      editedRow.avatar && setImageUrl(`${import.meta.env.VITE_API_ENPOINT}/${editedRow.avatar}`);
+    }
+  }, [editedRow]);
 
   return (
     <Modal

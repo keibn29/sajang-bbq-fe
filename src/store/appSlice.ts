@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IFormProps } from 'model';
+import { cloneDeep } from 'lodash';
+import { DynamicKeyObject, IFormProps } from 'model';
 import { RootState } from 'store';
 
 export interface IConfirmation {
@@ -15,7 +16,7 @@ export interface IModalForm {
   isOpen?: boolean;
   title: string;
   apiPath: string;
-  editedRowId?: number;
+  editedRow?: DynamicKeyObject;
   formElement: ((props: IFormProps) => JSX.Element) | null;
 }
 
@@ -78,6 +79,9 @@ const slice = createSlice({
     actionUpdateAppPagination(state, action: PayloadAction<IPagination>) {
       state.pagination = action.payload;
     },
+    actionReloadPaginatedData(state) {
+      state.pagination = cloneDeep(state.pagination);
+    },
   },
 });
 
@@ -89,6 +93,7 @@ export const {
   actionCloseAppModalForm,
   actionOpenAppModalForm,
   actionUpdateAppPagination,
+  actionReloadPaginatedData,
 } = slice.actions;
 
 export const selectAppLoading = (state: RootState) => state.app.isLoading;
