@@ -3,13 +3,14 @@ import { Route, Routes } from 'react-router-dom';
 import NotFound from 'app/page/NotFound';
 import CustomerLayout from 'app/layout/Customer';
 import { URL } from 'constants/url';
-import { Admin } from 'admin';
 
 const CUSTOMER_LAYOUT = 'customer';
 const SYSTEM_LAYOUT = 'system';
 const NONE_LAYOUT = 'none';
 
 const Home = lazy(() => import('app/page/Home'));
+const Address = lazy(() => import('app/page/Address'));
+const Menu = lazy(() => import('app/page/Menu'));
 const Login = lazy(() => import('app/page/Auth'));
 
 interface ItemType {
@@ -27,8 +28,14 @@ const customerItems: ItemType[] = [
     private: false,
   },
   {
-    key: URL.admin,
-    components: <Admin />,
+    key: URL.address,
+    components: <Address />,
+    layout: CUSTOMER_LAYOUT,
+    private: false,
+  },
+  {
+    key: URL.menu,
+    components: <Menu />,
     layout: CUSTOMER_LAYOUT,
     private: false,
   },
