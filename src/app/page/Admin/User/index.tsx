@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, Space, Table, Tag } from 'antd';
+import { Avatar, Button, Space, Table, Tag } from 'antd';
 import type { TableProps } from 'antd';
 import { DeleteOutlined, EditOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import UserModal from './Form';
@@ -19,6 +19,11 @@ interface DataType {
 }
 
 const columns: TableProps<DataType>['columns'] = [
+  {
+    title: 'Avatar',
+    key: 'avatar',
+    render: (_, record: DynamicKeyObject) => <Avatar src={`${import.meta.env.VITE_API_ENPOINT}/${record?.avatar}`} />,
+  },
   {
     title: 'First name',
     dataIndex: 'firstName',
