@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { FormProps } from 'antd';
 import { RootState } from 'store';
 
 export interface IConfirmation {
@@ -10,9 +11,24 @@ export interface IConfirmation {
   onCancel?: () => void;
 }
 
+export interface IModalForm {
+  isOpen?: boolean;
+  title: string;
+  apiPath: string;
+  editedRowId?: number;
+  formElement: ((props: FormProps) => JSX.Element) | null;
+}
+
+export interface IPagination {
+  current: number;
+  size: number;
+}
+
 export interface IAppState {
   isLoading: boolean;
   confirmation: IConfirmation;
+  modal: IModalForm;
+  pagination: IPagination;
 }
 
 const initialState: IAppState = {
@@ -24,6 +40,16 @@ const initialState: IAppState = {
     title: '',
     onSubmit: () => {},
     onCancel: () => {},
+  },
+  modal: {
+    isOpen: false,
+    title: '',
+    formElement: null,
+    apiPath: '',
+  },
+  pagination: {
+    current: 1,
+    size: 5,
   },
 };
 
@@ -43,13 +69,31 @@ const slice = createSlice({
     actionOpenAppConfirmation(state, action: PayloadAction<IConfirmation>) {
       state.confirmation = { ...action.payload, isOpen: true };
     },
+    actionCloseAppModalForm(state) {
+      state.modal = initialState.modal;
+    },
+    actionOpenAppModalForm(state, action: PayloadAction<IModalForm>) {
+      state.modal = { ...action.payload, isOpen: true };
+    },
+    actionUpdateAppPagination(state, action: PayloadAction<IPagination>) {
+      state.pagination = action.payload;
+    },
   },
 });
 
-export const { actionAppLoadingOff, actionAppLoadingOn, actionCloseAppConfirmation, actionOpenAppConfirmation } =
-  slice.actions;
+export const {
+  actionAppLoadingOff,
+  actionAppLoadingOn,
+  actionCloseAppConfirmation,
+  actionOpenAppConfirmation,
+  actionCloseAppModalForm,
+  actionOpenAppModalForm,
+  actionUpdateAppPagination,
+} = slice.actions;
 
 export const selectAppLoading = (state: RootState) => state.app.isLoading;
 export const selectAppConfirmation = (state: RootState) => state.app.confirmation;
+export const selectAppModalForm = (state: RootState) => state.app.modal;
+export const selectAppPagination = (state: RootState) => state.app.pagination;
 
 export default slice.reducer;

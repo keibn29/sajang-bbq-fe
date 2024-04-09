@@ -1,5 +1,13 @@
 import { store } from 'store';
-import { IConfirmation, actionAppLoadingOff, actionAppLoadingOn, actionOpenAppConfirmation } from 'store/appSlice';
+import {
+  IConfirmation,
+  IModalForm,
+  actionAppLoadingOff,
+  actionAppLoadingOn,
+  actionCloseAppModalForm,
+  actionOpenAppConfirmation,
+  actionOpenAppModalForm,
+} from 'store/appSlice';
 
 export const getPageName = () => window.location.pathname.split('/').pop() || 'home';
 
@@ -14,4 +22,13 @@ export const loading = {
 
 export const confirmation = (config: IConfirmation) => {
   store.dispatch(actionOpenAppConfirmation(config));
+};
+
+export const modalForm = {
+  open: (config: IModalForm) => {
+    store.dispatch(actionOpenAppModalForm(config));
+  },
+  close: () => {
+    store.dispatch(actionCloseAppModalForm());
+  },
 };

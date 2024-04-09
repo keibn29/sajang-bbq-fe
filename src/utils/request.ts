@@ -1,7 +1,8 @@
 import { notification } from 'antd';
 import axios, { AxiosRequestConfig } from 'axios';
-import { get } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
+import { loading } from './app';
+import { first } from 'lodash';
 
 export const instanceAxios = axios.create();
 
@@ -12,16 +13,15 @@ instanceAxios.defaults.headers.common['x-requestid'] = uuidv4();
 
 instanceAxios.interceptors.response.use(
   (response) => {
-    if (response.data.code && +response.data.code !== 200) {
-      return Promise.reject(response);
-    }
+    setTimeout(() => {
+      loading.off();
+    }, 300);
     return response;
   },
   (error) => {
-    if (!axios.isCancel(error)) {
-      const message = get(error, 'response')?.data?.messageVi ?? get(error, 'message');
-      notification.error({ message });
-    }
+    loading.off();
+    const message = error.response?.data?.messageVi ?? error.response?.data?.message ?? error.message;
+    notification.error({ message });
 
     return Promise.reject(error);
   }
