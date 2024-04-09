@@ -1,5 +1,11 @@
 .bg-banner {
   &.home {
-    background-image: url('/src/assets/images/banner-home.png');
+    background-image: url('/src/assets/images/sajang-7.png');
+  }
+  &.address {
+    background-image: url('/src/assets/images/address/T3_1-scaled.jpg');
+  }
+  &.menu {
+    background-image: url('/src/assets/images/sajang-9.png');
   }
 }

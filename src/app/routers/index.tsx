@@ -13,6 +13,8 @@ const ADMIN_LAYOUT = 'admin';
 const NONE_LAYOUT = 'none';
 
 const Home = lazy(() => import('app/page/Home'));
+const Address = lazy(() => import('app/page/Address'));
+const Menu = lazy(() => import('app/page/Menu'));
 const Login = lazy(() => import('app/page/Auth'));
 
 interface ItemType {
@@ -27,6 +29,19 @@ const customerItems: ItemType[] = [
     components: <Home />,
     layout: CUSTOMER_LAYOUT,
   },
+  {
+    key: URL.address,
+    components: <Address />,
+    layout: CUSTOMER_LAYOUT,
+  },
+  {
+    key: URL.menu,
+    components: <Menu />,
+    layout: CUSTOMER_LAYOUT,
+  },
+];
+
+const adminItems: ItemType[] = [
   {
     key: URL.admin.dashboard,
     components: <Dashboard />,
@@ -58,7 +73,7 @@ const sharedItems: ItemType[] = [
 ];
 
 export default function Routers() {
-  const items = customerItems.concat(sharedItems);
+  const items = customerItems.concat(adminItems, sharedItems);
   return (
     <Routes>
       {items.map((item) => {
