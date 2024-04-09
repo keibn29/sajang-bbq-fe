@@ -1,5 +1,6 @@
 import AppConfirmation from 'app/components/common/AppConfirmation';
 import AppLoading from 'app/components/common/AppLoading';
+import AppModalForm from 'app/components/common/AppModalForm';
 import Routers from 'app/routers';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <PersistGate loading={null} persistor={persistor}>
       <AppLoading />
       <AppConfirmation />
+      <AppModalForm />
       <BrowserRouter>
         <Routers />
       </BrowserRouter>

@@ -8,7 +8,8 @@ export const URL = {
   gallery: '/gallery',
   contact: '/contact',
   admin: {
-    admin: '/admin',
+    dashboard: '/admin',
     user: '/admin/user',
+    branch: '/admin/branch',
   },
 };

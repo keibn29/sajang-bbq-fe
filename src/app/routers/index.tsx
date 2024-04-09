@@ -5,6 +5,8 @@ import CustomerLayout from 'app/layout/Customer';
 import { URL } from 'constants/url';
 import User from 'app/page/Admin/User';
 import AdminLayout from 'app/layout/Admin';
+import Dashboard from 'app/page/Admin/Dashboard';
+import Branch from 'app/page/Admin/Branch';
 
 const CUSTOMER_LAYOUT = 'customer';
 const ADMIN_LAYOUT = 'admin';
@@ -29,8 +31,18 @@ const customerItems: ItemType[] = [
 
 const adminItems: ItemType[] = [
   {
-    key: URL.admin.admin,
+    key: URL.admin.dashboard,
+    components: <Dashboard />,
+    layout: ADMIN_LAYOUT,
+  },
+  {
+    key: URL.admin.user,
     components: <User />,
+    layout: ADMIN_LAYOUT,
+  },
+  {
+    key: URL.admin.branch,
+    components: <Branch />,
     layout: ADMIN_LAYOUT,
   },
 ];
