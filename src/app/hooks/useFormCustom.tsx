@@ -1,7 +1,7 @@
-import { notification } from 'antd';
+import { message } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { processPostQuery, processPutQuery } from 'api';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, keys } from 'lodash';
 import { useAppDispatch, useAppSelector } from 'store';
 import { actionUpdateAppPagination, selectAppPagination } from 'store/appSlice';
 import { loading } from 'utils/app';
@@ -18,18 +18,33 @@ function useFormCustom(props: IProps) {
   const page = useAppSelector(selectAppPagination);
   const [form] = useForm();
 
+  const generateFormData = (formValues: any) => {
+    const formData = new FormData();
+    keys(formValues).forEach((field) => {
+      formData.append(field, formValues[field]);
+    });
+
+    return formData;
+  };
+
+  const handleCallApi = (formValues: any) => {
+    loading.on();
+    const formData = generateFormData(formValues);
+    const url = !editedRowId ? apiPath : `${apiPath}/${editedRowId}`;
+    const queryFn = !editedRowId ? processPostQuery : processPutQuery;
+
+    queryFn(url, formData, true).then(() => {
+      onClose();
+      message.success('Cập nhật thông tin thành công');
+      dispatch(actionUpdateAppPagination(cloneDeep(page)));
+    });
+  };
+
   const onSubmitForm = () => {
     form
       .validateFields()
       .then((values) => {
-        loading.on();
-        const url = !editedRowId ? apiPath : `${apiPath}/${editedRowId}`;
-        const queryFn = !editedRowId ? processPostQuery : processPutQuery;
-        queryFn(url, values).then(() => {
-          onClose();
-          notification.success({ message: 'Cập nhật thông tin thành công' });
-          dispatch(actionUpdateAppPagination(cloneDeep(page)));
-        });
+        handleCallApi(values);
       })
       .catch(() => Promise.resolve());
   };

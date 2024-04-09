@@ -1,8 +1,32 @@
-import { LockOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
-import { Col, Form, FormProps, Input, Row, Select } from 'antd';
+import { LoadingOutlined, LockOutlined, PhoneOutlined, PlusOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, Col, Form, Input, Row, Select, Upload, UploadProps } from 'antd';
+import { IFormProps } from 'model';
+import { useState } from 'react';
+import { getBase64, isValisBeforeUpload } from 'utils/upload';
 
-const UserForm = (props: FormProps) => {
-  const { form } = props;
+const UserForm = (props: IFormProps) => {
+  const { form, imageUrl, onChangeImageUrl } = props;
+  const [isLoading, setIsLoading] = useState(false);
+
+  const uploadButton = (
+    <button style={{ border: 0, background: 'none' }} type="button">
+      {isLoading ? <LoadingOutlined /> : <PlusOutlined />}
+      <div style={{ marginTop: 8 }}>Avatar</div>
+    </button>
+  );
+
+  const handleChangeAvatar: UploadProps['onChange'] = (info) => {
+    if (info.file.status === 'uploading') {
+      setIsLoading(true);
+      return;
+    }
+    if (info.file.status === 'done') {
+      getBase64(info.file.originFileObj, (url) => {
+        setIsLoading(false);
+        onChangeImageUrl(url);
+      });
+    }
+  };
 
   return (
     <Form form={form} initialValues={{ remember: true }} labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
@@ -110,6 +134,21 @@ const UserForm = (props: FormProps) => {
               ]}
               size="large"
             />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item label="Avatar" name="avatar" getValueFromEvent={(evt) => evt.file.originFileObj}>
+            <Upload
+              listType="picture-circle"
+              showUploadList={false}
+              customRequest={({ file, onSuccess }) => {
+                onSuccess && onSuccess('ok');
+              }}
+              beforeUpload={isValisBeforeUpload}
+              onChange={handleChangeAvatar}
+            >
+              {imageUrl ? <Avatar src={imageUrl} className="w-full h-full" /> : uploadButton}
+            </Upload>
           </Form.Item>
         </Col>
       </Row>
