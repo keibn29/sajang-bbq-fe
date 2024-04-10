@@ -13,7 +13,6 @@ function Login(props: Readonly<IProps>) {
 
   const handleLogin = (values: IPayloadLogin) => {
     dispatch(actionLogin(values));
-    console.log('values', values);
   };
 
   return (

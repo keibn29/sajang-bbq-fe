@@ -13,7 +13,6 @@ function Singup(props: Readonly<IProps>) {
   const dispatch = useAppDispatch();
 
   const handleSignup = (values: any) => {
-    console.log('values', values);
     const data = { ...values, role: 'NORMAL' };
     request({ url: '/user', method: 'POST', data }).then((res) => {
       const { user } = res.data;
