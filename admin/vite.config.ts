@@ -12,7 +12,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'disc',
+    outDir: 'dist',
   },
   server: {
     port: 3012,
