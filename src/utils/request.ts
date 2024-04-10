@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { loading } from './app';
+import { message } from 'antd';
 
 export const instanceAxios = axios.create();
 
@@ -14,8 +15,7 @@ instanceAxios.interceptors.response.use(
   },
   (error) => {
     loading.off();
-    const message = error.response?.data?.messageVi ?? error.response?.data?.message ?? error.message;
-    message.error(message);
+    message.error(error.response?.data?.messageVi ?? error.response?.data?.message ?? error.message);
 
     return Promise.reject(error);
   }
