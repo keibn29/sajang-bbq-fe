@@ -39,6 +39,11 @@ const customerItems: ItemType[] = [
     components: <Menu />,
     layout: CUSTOMER_LAYOUT,
   },
+  {
+    key: URL.menu,
+    components: <Menu />,
+    layout: CUSTOMER_LAYOUT,
+  },
 ];
 
 const adminItems: ItemType[] = [
