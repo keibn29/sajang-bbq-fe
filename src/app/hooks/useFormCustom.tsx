@@ -1,35 +1,47 @@
-import { notification } from 'antd';
+import { message } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { processPostQuery, processPutQuery } from 'api';
-import { cloneDeep } from 'lodash';
-import { useAppDispatch, useAppSelector } from 'store';
-import { actionUpdateAppPagination, selectAppPagination } from 'store/appSlice';
-import { loading } from 'utils/app';
+import { keys } from 'lodash';
+import { DynamicKeyObject } from 'model';
+import { loading, reloadPaginatedData } from 'utils/app';
 
 interface IProps {
   apiPath: string;
   onClose: () => void;
-  editedRowId?: number;
+  editedRow?: DynamicKeyObject;
 }
 
 function useFormCustom(props: IProps) {
-  const { apiPath, editedRowId, onClose } = props;
-  const dispatch = useAppDispatch();
-  const page = useAppSelector(selectAppPagination);
+  const { apiPath, editedRow, onClose } = props;
   const [form] = useForm();
+
+  const generateFormData = (formValues: any) => {
+    const formData = new FormData();
+    keys(formValues).forEach((field) => {
+      formData.append(field, formValues[field]);
+    });
+
+    return formData;
+  };
+
+  const handleCallApi = (formValues: any) => {
+    loading.on();
+    const formData = generateFormData(formValues);
+    const url = !editedRow?.id ? apiPath : `${apiPath}/${editedRow.id}`;
+    const queryFn = !editedRow?.id ? processPostQuery : processPutQuery;
+
+    queryFn(url, formData, true).then(() => {
+      onClose();
+      message.success('Cập nhật thông tin thành công');
+      reloadPaginatedData();
+    });
+  };
 
   const onSubmitForm = () => {
     form
       .validateFields()
       .then((values) => {
-        loading.on();
-        const url = !editedRowId ? apiPath : `${apiPath}/${editedRowId}`;
-        const queryFn = !editedRowId ? processPostQuery : processPutQuery;
-        queryFn(url, values).then(() => {
-          onClose();
-          notification.success({ message: 'Cập nhật thông tin thành công' });
-          dispatch(actionUpdateAppPagination(cloneDeep(page)));
-        });
+        handleCallApi(values);
       })
       .catch(() => Promise.resolve());
   };

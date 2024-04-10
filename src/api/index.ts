@@ -9,20 +9,26 @@ export const processGetQuery = async (url: string, params: DynamicKeyObject) => 
   }).then((res) => res.data);
 };
 
-export const processPostQuery = async (url: string, data: any) => {
-  return request({
-    url,
-    method: 'POST',
-    data,
-  }).then((res) => res.data);
+export const processPostQuery = async (url: string, data: any, isFormData: boolean = false) => {
+  return request(
+    {
+      url,
+      method: 'POST',
+      data,
+    },
+    isFormData
+  ).then((res) => res.data);
 };
 
-export const processPutQuery = async (url: string, data: any) => {
-  return request({
-    url,
-    method: 'PUT',
-    data,
-  }).then((res) => res.data);
+export const processPutQuery = async (url: string, data: any, isFormData: boolean = false) => {
+  return request(
+    {
+      url,
+      method: 'PUT',
+      data,
+    },
+    isFormData
+  ).then((res) => res.data);
 };
 
 export const processDeleteQuery = async (url: string) => {

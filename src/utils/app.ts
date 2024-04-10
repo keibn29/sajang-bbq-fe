@@ -7,6 +7,7 @@ import {
   actionCloseAppModalForm,
   actionOpenAppConfirmation,
   actionOpenAppModalForm,
+  actionReloadPaginatedData,
 } from 'store/appSlice';
 
 export const getPageName = () => window.location.pathname.split('/').pop() || 'home';
@@ -31,4 +32,8 @@ export const modalForm = {
   close: () => {
     store.dispatch(actionCloseAppModalForm());
   },
+};
+
+export const reloadPaginatedData = () => {
+  store.dispatch(actionReloadPaginatedData());
 };
