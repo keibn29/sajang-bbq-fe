@@ -15,6 +15,7 @@ const NONE_LAYOUT = 'none';
 const Home = lazy(() => import('app/page/Home'));
 const Address = lazy(() => import('app/page/Address'));
 const Menu = lazy(() => import('app/page/Menu'));
+const Offers = lazy(() => import('app/page/Offers'));
 const Login = lazy(() => import('app/page/Auth'));
 
 interface ItemType {
@@ -40,8 +41,8 @@ const customerItems: ItemType[] = [
     layout: CUSTOMER_LAYOUT,
   },
   {
-    key: URL.menu,
-    components: <Menu />,
+    key: URL.offers,
+    components: <Offers />,
     layout: CUSTOMER_LAYOUT,
   },
 ];

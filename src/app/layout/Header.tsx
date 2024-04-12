@@ -19,7 +19,7 @@ const menus = [
   },
   {
     text: 'Ưu đãi',
-    url: URL.sale,
+    url: URL.offers,
   },
   {
     text: 'Blog',
