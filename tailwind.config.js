@@ -22,6 +22,7 @@ export default {
         gallery3: "url('/src/assets/images/gallery/gallery3.png')",
         gallery4: "url('/src/assets/images/gallery/gallery4.png')",
         blog1: "url('/src/assets/images/blog/blog1.jpg')",
+        offers: "url('/src/assets/images/Sajang-BBQ-web-Uu-dai-dong-ho-dem-nguoc.jpg')",
       },
     },
     colors: {
