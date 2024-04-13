@@ -7,6 +7,7 @@ export const URL = {
   blog: '/blog',
   gallery: '/gallery',
   contact: '/contact',
+  booking: '/booking',
   admin: {
     dashboard: '/admin',
     user: '/admin/user',

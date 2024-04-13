@@ -19,6 +19,7 @@ const Offers = lazy(() => import('app/page/Offers'));
 const Blog = lazy(() => import('app/page/Blog'));
 const Gallery = lazy(() => import('app/page/Gallery'));
 const Contact = lazy(() => import('app/page/Contact'));
+const Booking = lazy(() => import('app/page/Booking'));
 const Login = lazy(() => import('app/page/Auth'));
 
 interface ItemType {
@@ -61,6 +62,11 @@ const customerItems: ItemType[] = [
   {
     key: URL.contact,
     components: <Contact />,
+    layout: CUSTOMER_LAYOUT,
+  },
+  {
+    key: URL.booking,
+    components: <Booking />,
     layout: CUSTOMER_LAYOUT,
   },
 ];

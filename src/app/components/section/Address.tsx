@@ -1,6 +1,6 @@
 const Address = () => {
   return (
-    <div className="bg-dark py-[80px]">
+    <div className="bg-home_address py-[80px] bg-no-repeat bg-cover">
       <div className="w-[635px] mx-auto text-white text-center">
         <p className="text-[45px]">ĐỊA ĐIỂM</p>
         <p className="text-base mt-5">
