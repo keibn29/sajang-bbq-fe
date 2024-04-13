@@ -1,5 +1,5 @@
-import { UserOutlined } from '@ant-design/icons';
-import { Button, Col, DatePicker, DatePickerProps, Form, Row, Select } from 'antd';
+import { InfoCircleFilled, UserOutlined } from '@ant-design/icons';
+import { Button, Col, DatePicker, DatePickerProps, Form, Row, Select, Tooltip } from 'antd';
 import { IFormProps } from 'model';
 
 const BookingForm = (props: IFormProps) => {
@@ -16,21 +16,39 @@ const BookingForm = (props: IFormProps) => {
       <Row gutter={[10, 0]}>
         <Col span={24}>
           <Form.Item
-            label="Số lượng người"
+            label="Số bàn muốn đặt"
             name="email"
             rules={[{ required: true, message: 'Please input your Email!' }]}
           >
             <Select
               suffixIcon={<UserOutlined className="site-form-item-icon" />}
-              defaultValue="2 người"
+              defaultValue="2 bàn"
               style={{ width: 120 }}
               onChange={handleChange}
               options={[
-                { value: '1', label: '1 người' },
-                { value: '2', label: '2 người' },
-                { value: '3', label: '3 người' },
+                { value: '1', label: '1 bàn' },
+                { value: '2', label: '2 bàn' },
+                { value: '3', label: '3 bàn' },
               ]}
             />
+            <Tooltip
+              color="white"
+              overlayClassName="custom-tooltip"
+              title={
+                <div className="w-full flex justify-center items-center text-black">
+                  <div className="">
+                    <p className="text-center text-base font-bold my-[15px]">1 bàn tối đa 4 người</p>
+                  </div>
+                </div>
+              }
+              placement="right"
+              trigger={['hover']}
+              overlayStyle={{
+                maxWidth: 'none',
+              }}
+            >
+              <InfoCircleFilled style={{ color: '#a31d24', fontSize: '20px' }} className="ml-2" />
+            </Tooltip>
           </Form.Item>
         </Col>
         <Col span={24}>

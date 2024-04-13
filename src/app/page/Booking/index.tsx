@@ -14,9 +14,10 @@ const Booking = () => {
                 <Row className="mb-3">
                   <p className="font-bold text-xl mr-2">Sajang BBQ Nguyễn Hoàng</p>
                   <Tooltip
+                    color="white"
                     overlayClassName="custom-tooltip"
                     title={
-                      <div className="w-full flex justify-center items-center">
+                      <div className="w-full flex justify-center items-center text-black">
                         <div className="">
                           <p className="text-center text-[40px] font-bold my-[15px]">Tiện ích</p>
                           <ul>
