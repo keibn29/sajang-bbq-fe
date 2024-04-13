@@ -46,19 +46,14 @@ export const slice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(actionLogin.pending, (state) => {
-        // loading.on();
-      })
       .addCase(actionLogin.fulfilled, (state, action) => {
         const { user, accessToken } = get(action, 'payload.data');
         state.user = user;
         state.accessToken = accessToken;
-        // loading.off();
       })
       .addCase(actionLogin.rejected, (state) => {
         state.user = null;
         state.accessToken = '';
-        // loading.off();
       });
   },
 });

@@ -3,7 +3,7 @@ import { Avatar, Button, Space, Table, Tag } from 'antd';
 import type { TableProps } from 'antd';
 import { DeleteOutlined, EditOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import UserModal from './Form';
-import PaginationCustom from 'app/components/common/AppPagination';
+import AppPagination from 'app/components/common/AppPagination';
 import { processGetQuery } from 'api';
 import { DynamicKeyObject } from 'model';
 import { loading, modalForm } from 'utils/app';
@@ -50,7 +50,7 @@ const User = () => {
         Thêm mới
       </Button>
       <Table columns={columns} dataSource={data.user} pagination={false} />
-      <PaginationCustom onChangeDataTable={setData} apiPath="/user" />
+      <AppPagination onChangeDataTable={setData} apiPath="/user" />
     </>
   );
 };

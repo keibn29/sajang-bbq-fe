@@ -1,8 +1,8 @@
-import { Button, Flex } from 'antd';
+import { Avatar, Button, Flex } from 'antd';
 import { URL } from 'constants/url';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'store';
-import { actionLogout } from 'store/authSlice';
+import { useAppDispatch, useAppSelector } from 'store';
+import { actionLogout, selectUser } from 'store/authSlice';
 
 const menus = [
   {
@@ -19,7 +19,7 @@ const menus = [
   },
   {
     text: 'Ưu đãi',
-    url: URL.offers,
+    url: URL.offer,
   },
   {
     text: 'Blog',
@@ -33,18 +33,15 @@ const menus = [
     text: 'Liên hệ',
     url: URL.contact,
   },
-  {
-    text: 'Login',
-    url: URL.login,
-  },
 ];
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const user = useAppSelector(selectUser);
 
-  const handleLogout = () => {
-    dispatch(actionLogout());
+  const handleAction = (action: 'login' | 'logout') => {
+    action === 'logout' && dispatch(actionLogout());
     navigate(URL.login);
   };
 
@@ -63,7 +60,14 @@ const Header = () => {
             </Link>
           ))}
         </div>
-        <Button onClick={handleLogout}>Log out</Button>
+        {!user?.id ? (
+          <Button onClick={() => handleAction('login')}>Log in</Button>
+        ) : (
+          <div>
+            <Avatar src={`${import.meta.env.VITE_API_ENPOINT}/${user.avatar}`} size={40} className="mr-2" />
+            <Button onClick={() => handleAction('logout')}>Log out</Button>
+          </div>
+        )}
       </Flex>
     </div>
   );

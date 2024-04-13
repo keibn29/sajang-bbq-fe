@@ -8,3 +8,8 @@ export interface IFormProps extends FormProps {
   imageUrl: string;
   onChangeImageUrl: (base64: string) => void;
 }
+
+export enum ENUM_USER_ROLE {
+  admin = 'ADMIN',
+  customer = 'CUSTOMER',
+}

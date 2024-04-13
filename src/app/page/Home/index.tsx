@@ -10,8 +10,7 @@ import Sale from 'app/components/section/Sale';
 
 const Home = () => {
   return (
-    <div className="mb-[100px]">
-      <Banner />
+    <div>
       <Introduction />
       <Address />
       <Concept />
@@ -19,7 +18,6 @@ const Home = () => {
       <Sale />
       <Gallery />
       <Blog />
-      <Contact />
     </div>
   );
 };

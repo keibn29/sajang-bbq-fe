@@ -1,4 +1,3 @@
-import { ConfigProvider } from 'antd';
 import AppConfirmation from 'app/components/common/AppConfirmation';
 import AppLoading from 'app/components/common/AppLoading';
 import AppModalForm from 'app/components/common/AppModalForm';

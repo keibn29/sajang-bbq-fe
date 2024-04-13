@@ -1,9 +1,9 @@
 const Contact = () => {
   return (
-    <div className="max-w-[1800px] mx-auto mt-[80px] relative">
+    <div className="w-[90%] mx-auto mt-[80px] mb-[100px] relative">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d476648.5058218454!2d105.84497!3d21.040029!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abba4b099afd%3A0x11ef3f804212a080!2zMjMgUC4gUGhhbiDEkMOsbmggUGjDuW5nLCBRdcOhbiBUaMOhbmgsIEJhIMSQw6xuaCwgSMOgIE7hu5lpLCBWaWV0bmFt!5e0!3m2!1sen!2sus!4v1711383078758!5m2!1sen!2sus"
-        width="75% "
+        width="75%"
         height="550"
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"

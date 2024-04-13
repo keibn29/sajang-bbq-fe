@@ -3,7 +3,7 @@ export const URL = {
   login: '/login',
   address: '/address',
   menu: '/menu',
-  offers: '/offers',
+  offer: '/offer',
   blog: '/blog',
   gallery: '/gallery',
   contact: '/contact',

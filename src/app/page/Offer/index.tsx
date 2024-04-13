@@ -1,8 +1,9 @@
 import { GiftOutlined, TeamOutlined } from '@ant-design/icons';
 import { Button, Col, Flex, Input, Row } from 'antd';
-const OffersContent = () => {
+
+const Offer = () => {
   return (
-    <>
+    <div>
       <Row className="max-w-[1200px] !mx-auto py-[50px]">
         <Col span={24} className="text-center mt-5 px-5">
           <p className="text-primary font-bold text-[45px]">ƯU ĐÃI TRONG TUẦN</p>
@@ -23,7 +24,7 @@ const OffersContent = () => {
             <hr />
           </Flex>
           <p className="text-sm font-bold mt-5  text-justify">
-            ƯU ĐÃI ĐOÀN ĐÔNG – TẶNG PHÒNG RIÊNG VÀ VOUCHER LÊN ĐẾN 2.000.000Đ
+            ƯU ĐÃI ĐOÀN ĐÔNG - TẶNG PHÒNG RIÊNG VÀ VOUCHER LÊN ĐẾN 2.000.000Đ
           </p>
           <ul>
             <li>
@@ -64,7 +65,7 @@ const OffersContent = () => {
           <p>Note: Có thể mang quà tặng về</p>
         </Col>
       </Row>
-      <div className="bg-image bg-offers w-full h-[400px]">
+      <div className="bg-image bg-offer w-full h-[400px]">
         <Row>
           <Col span={12} className="text-center  text-white mt-5 px-5">
             <p className="text-[45px] font-bold text-center ">CHỈ CÒN</p>
@@ -112,15 +113,13 @@ const OffersContent = () => {
               </Row>
               <p>GHI CHÚ</p>
               <Input></Input>
-              <Button danger type="primary">
-                XÁC NHẬN
-              </Button>
+              <Button type="primary">XÁC NHẬN</Button>
             </div>
           </Col>
         </Row>
       </div>
-    </>
+    </div>
   );
 };
 
-export default OffersContent;
+export default Offer;

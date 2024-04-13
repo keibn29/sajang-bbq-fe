@@ -1,5 +1,5 @@
-import { lazy, ReactElement, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { lazy, ReactElement, Suspense, useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import NotFound from 'app/page/NotFound';
 import CustomerLayout from 'app/layout/Customer';
 import { URL } from 'constants/url';
@@ -7,6 +7,7 @@ import User from 'app/page/Admin/User';
 import AdminLayout from 'app/layout/Admin';
 import Dashboard from 'app/page/Admin/Dashboard';
 import Branch from 'app/page/Admin/Branch';
+import { getPageName } from 'utils/app';
 
 const CUSTOMER_LAYOUT = 'customer';
 const ADMIN_LAYOUT = 'admin';
@@ -15,7 +16,7 @@ const NONE_LAYOUT = 'none';
 const Home = lazy(() => import('app/page/Home'));
 const Address = lazy(() => import('app/page/Address'));
 const Menu = lazy(() => import('app/page/Menu'));
-const Offers = lazy(() => import('app/page/Offers'));
+const Offer = lazy(() => import('app/page/Offer'));
 const Blog = lazy(() => import('app/page/Blog'));
 const Gallery = lazy(() => import('app/page/Gallery'));
 const Contact = lazy(() => import('app/page/Contact'));
@@ -45,8 +46,8 @@ const customerItems: ItemType[] = [
     layout: CUSTOMER_LAYOUT,
   },
   {
-    key: URL.offers,
-    components: <Offers />,
+    key: URL.offer,
+    components: <Offer />,
     layout: CUSTOMER_LAYOUT,
   },
   {
@@ -104,6 +105,12 @@ const sharedItems: ItemType[] = [
 
 export default function Routers() {
   const items = customerItems.concat(adminItems, sharedItems);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <Routes>
       {items.map((item) => {
