@@ -1,14 +1,11 @@
-import React, { useRef, useState } from 'react';
-import { Avatar, Button, Space, Table, Tag } from 'antd';
 import type { TableProps } from 'antd';
-import { DeleteOutlined, EditOutlined, PlusSquareOutlined } from '@ant-design/icons';
-import UserModal from './Form';
+import { Avatar, Button, Table } from 'antd';
 import AppPagination from 'app/components/common/AppPagination';
-import { processGetQuery } from 'api';
-import { DynamicKeyObject } from 'model';
-import { loading, modalForm } from 'utils/app';
-import { modalFormConfig } from 'constants/modalForm';
 import TableAction from 'app/components/custom/TableAction';
+import { modalFormConfig } from 'constants/modalForm';
+import { DynamicKeyObject } from 'model';
+import { useState } from 'react';
+import { modalForm } from 'utils/app';
 
 interface DataType {
   key: string;
@@ -50,7 +47,7 @@ const User = () => {
         Thêm mới
       </Button>
       <Table columns={columns} dataSource={data.user} pagination={false} />
-      <AppPagination onChangeDataTable={setData} apiPath="/user" />
+      <AppPagination onChangeDataTable={setData} apiPath={modalFormConfig.user.apiPath} />
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, Space, message } from 'antd';
 import { processDeleteQuery } from 'api';
-import { modalFormConfig } from 'constants/modalForm';
+import { IModalConfigKey, modalFormConfig } from 'constants/modalForm';
 import { DynamicKeyObject } from 'model';
 import { confirmation, getPageName, modalForm, reloadPaginatedData } from 'utils/app';
 
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 function TableAction(props: Readonly<IProps>) {
-  const pageName = getPageName();
+  const pageName = getPageName() as IModalConfigKey;
   const { row } = props;
 
   const handleEditRow = () => {

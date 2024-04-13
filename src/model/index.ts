@@ -13,3 +13,10 @@ export enum ENUM_USER_ROLE {
   admin = 'ADMIN',
   customer = 'CUSTOMER',
 }
+
+export enum ENUM_BOOKING_STATUS {
+  new = 'NEW',
+  verified = 'VERIFIED',
+  finished = 'FINISHED',
+  done = 'DONE',
+}

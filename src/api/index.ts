@@ -1,7 +1,7 @@
 import { DynamicKeyObject } from 'model';
 import request from 'utils/request';
 
-export const processGetQuery = async (url: string, params: DynamicKeyObject) => {
+export const processGetQuery = async (url: string, params?: DynamicKeyObject) => {
   return request({
     url,
     method: 'GET',
