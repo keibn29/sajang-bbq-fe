@@ -1,25 +1,10 @@
-import { Breadcrumb, Button, Col, Input, Row } from 'antd';
+import { Button, Col, Row } from 'antd';
 
 const Booking = () => {
   return (
     <div>
       <Row className="max-w-[1200px] !mx-auto py-[50px]" gutter={[12, 12]}>
-        <Col span={24}>
-          <Breadcrumb
-            separator=">"
-            items={[
-              {
-                title: 'Trang chủ',
-              },
-              {
-                title: 'Địa chỉ nhà hàng',
-                href: '',
-              },
-            ]}
-          />
-        </Col>
         <Col span={8}>
-          <Input></Input>
           <div style={{ overflowY: 'scroll', height: '550px' }}>
             <ul>
               <li className="h-[195px]">
