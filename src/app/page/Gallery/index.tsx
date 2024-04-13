@@ -1,15 +1,15 @@
 import Banner from 'app/components/section/Banner';
 import Contact from 'app/components/section/Contact';
-import MenuContent from 'app/components/section/MenuContent';
+import GalleryContent from 'app/components/section/GalleryContent';
 
-const Menu = () => {
+const Gallery = () => {
   return (
     <div className="mb-[100px]">
       <Banner />
-      <MenuContent />
+      <GalleryContent />
       <Contact />
     </div>
   );
 };
 
-export default Menu;
+export default Gallery;

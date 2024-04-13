@@ -3,7 +3,8 @@ import { Col, Row } from 'antd';
 const Sale = () => {
   return (
     <div className="py-[50px]">
-      <div className="bg-image w-full h-[400px] bg-dark-green" />
+      <p className="text-[45px] text-primary text-center font-bold uppercase">ƯU ĐÃI</p>
+      <div className="bg-image w-full h-[400px] bg-home_offer" />
       <div className="flex justify-center py-[20px]">
         <Row gutter={20} className="w-[1200px]">
           <Col span={12} className="text-center mt-10">

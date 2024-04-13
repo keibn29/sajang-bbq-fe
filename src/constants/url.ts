@@ -3,10 +3,11 @@ export const URL = {
   login: '/login',
   address: '/address',
   menu: '/menu',
-  sale: '/sale',
+  offers: '/offers',
   blog: '/blog',
   gallery: '/gallery',
   contact: '/contact',
+  booking: '/booking',
   admin: {
     dashboard: '/admin',
     user: '/admin/user',

@@ -11,7 +11,7 @@ const Banner = () => {
         <p className="text-white font-bold text-[65px] bg-[#00000036] px-[20px] w-fit rounded-xl">
           Buffet trưa xèo xèo thịt nướng
         </p>
-        <Button type="primary" className="mt-[10px] uppercase w-[190px] h-[60px] text-[22px] font-bold">
+        <Button danger type="primary" className="mt-[10px] uppercase w-[190px] h-[60px] text-[22px] font-bold">
           Đặt bàn
         </Button>
       </div>

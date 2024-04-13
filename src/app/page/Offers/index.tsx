@@ -1,15 +1,15 @@
 import Banner from 'app/components/section/Banner';
 import Contact from 'app/components/section/Contact';
-import MenuContent from 'app/components/section/MenuContent';
+import OffersContent from 'app/components/section/OffersContent';
 
-const Menu = () => {
+const Offers = () => {
   return (
     <div className="mb-[100px]">
       <Banner />
-      <MenuContent />
+      <OffersContent />
       <Contact />
     </div>
   );
 };
 
-export default Menu;
+export default Offers;

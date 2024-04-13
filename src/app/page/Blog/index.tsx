@@ -1,15 +1,16 @@
 import Banner from 'app/components/section/Banner';
+import BlogContent from 'app/components/section/BlogContent';
 import Contact from 'app/components/section/Contact';
-import MenuContent from 'app/components/section/MenuContent';
 
-const Menu = () => {
+
+const Blog = () => {
   return (
     <div className="mb-[100px]">
       <Banner />
-      <MenuContent />
+      <BlogContent />
       <Contact />
     </div>
   );
 };
 
-export default Menu;
+export default Blog;
