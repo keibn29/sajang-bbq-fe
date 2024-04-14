@@ -3,6 +3,7 @@ import { useForm } from 'antd/es/form/Form';
 import { processPostQuery, processPutQuery } from 'api';
 import { keys } from 'lodash';
 import { DynamicKeyObject } from 'model';
+import moment from 'moment';
 import { loading, reloadPaginatedData } from 'utils/app';
 
 interface IProps {
@@ -16,9 +17,10 @@ function useFormCustom(props: IProps) {
   const [form] = useForm();
 
   const generateFormData = (formValues: any) => {
+    console.log('formValues', formValues);
     const formData = new FormData();
-    keys(formValues).forEach((field) => {
-      formData.append(field, formValues[field]);
+    keys(formValues).forEach((key) => {
+      formData.append(key, formValues[key]);
     });
 
     return formData;

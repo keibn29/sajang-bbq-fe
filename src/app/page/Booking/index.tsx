@@ -1,14 +1,14 @@
 import { InfoCircleFilled } from '@ant-design/icons';
 import { Button, Col, Image, Row, Tooltip } from 'antd';
 import { processGetQuery } from 'api';
-import { modalFormConfig } from 'constants/modalForm';
 import { DynamicKeyObject } from 'model';
 import { useEffect, useState } from 'react';
-import { modalForm } from 'utils/app';
+import BookingForm from './Form';
 
 const Booking = () => {
   const [branches, setBranches] = useState<any[]>([]);
   const [selectedBranch, setSelectedBranch] = useState<DynamicKeyObject>({});
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   useEffect(() => {
     processGetQuery('/branch').then((data) => {
@@ -65,7 +65,10 @@ const Booking = () => {
                       <Button
                         className="h-12 w-[45%]"
                         type="primary"
-                        onClick={() => modalForm.open(modalFormConfig.booking)}
+                        onClick={() => {
+                          setIsOpenModal(true);
+                          setSelectedBranch(branch.id);
+                        }}
                       >
                         Đặt bàn
                       </Button>
@@ -81,6 +84,7 @@ const Booking = () => {
           <Image height="100%" width="100%" src={`${import.meta.env.VITE_API_ENPOINT}/${selectedBranch.avatar}`} />
         </Col>
       </Row>
+      <BookingForm isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} branch={selectedBranch} />
     </div>
   );
 };
