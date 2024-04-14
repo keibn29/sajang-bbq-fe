@@ -12,5 +12,6 @@ export const URL = {
     dashboard: '/admin',
     user: '/admin/user',
     branch: '/admin/branch',
+    booking: '/admin/booking',
   },
 };

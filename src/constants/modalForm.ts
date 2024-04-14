@@ -1,9 +1,8 @@
 import BranchForm from 'app/page/Admin/Branch/Form';
 import UserForm from 'app/page/Admin/User/Form';
-import BookingForm from 'app/page/Booking/Form';
 import { IModalForm } from 'store/appSlice';
 
-export type IModalConfigKey = 'user' | 'branch' | 'dish' | 'blog' | 'booking';
+export type IModalConfigKey = 'user' | 'branch' | 'dish' | 'blog';
 
 export const modalFormConfig: { [key in IModalConfigKey]: IModalForm } = {
   user: {
@@ -25,11 +24,5 @@ export const modalFormConfig: { [key in IModalConfigKey]: IModalForm } = {
     title: 'Bài đăng',
     apiPath: '/blog',
     formElement: BranchForm,
-  },
-  booking: {
-    title: 'Đặt bàn',
-    apiPath: '/booking',
-    width: 600,
-    formElement: BookingForm,
   },
 };

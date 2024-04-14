@@ -8,6 +8,7 @@ import AdminLayout from 'app/layout/Admin';
 import Dashboard from 'app/page/Admin/Dashboard';
 import Branch from 'app/page/Admin/Branch';
 import { getPageName } from 'utils/app';
+import BookingMangament from 'app/page/Admin/Booking';
 
 const CUSTOMER_LAYOUT = 'customer';
 const ADMIN_LAYOUT = 'admin';
@@ -86,6 +87,11 @@ const adminItems: ItemType[] = [
   {
     key: URL.admin.branch,
     components: <Branch />,
+    layout: ADMIN_LAYOUT,
+  },
+  {
+    key: URL.admin.booking,
+    components: <BookingMangament />,
     layout: ADMIN_LAYOUT,
   },
 ];

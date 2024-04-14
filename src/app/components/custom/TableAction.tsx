@@ -7,11 +7,12 @@ import { confirmation, getPageName, modalForm, reloadPaginatedData } from 'utils
 
 interface IProps {
   row: DynamicKeyObject;
+  apiPath: string;
 }
 
 function TableAction(props: Readonly<IProps>) {
   const pageName = getPageName() as IModalConfigKey;
-  const { row } = props;
+  const { row, apiPath } = props;
 
   const handleEditRow = () => {
     modalForm.open({
@@ -26,7 +27,7 @@ function TableAction(props: Readonly<IProps>) {
       title: 'Xác nhận',
       message: 'Bạn chắc chắn muốn xoá bản ghi này?',
       onSubmit: () => {
-        processDeleteQuery(`/user/${row.id}`).then(() => {
+        processDeleteQuery(`${apiPath}/${row.id}`).then(() => {
           message.success('Xoá bản ghi thành công');
           reloadPaginatedData();
         });

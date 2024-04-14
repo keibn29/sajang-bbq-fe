@@ -30,6 +30,11 @@ const menu = [
     icon: <UserOutlined />,
     label: <Link to={URL.admin.branch}>Chi nhánh</Link>,
   },
+  {
+    key: 'booking',
+    icon: <UserOutlined />,
+    label: <Link to={URL.admin.booking}>Đơn đặt bàn</Link>,
+  },
 ];
 
 const AdminLayout = (props: IProps) => {

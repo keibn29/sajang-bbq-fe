@@ -34,7 +34,7 @@ const columns: TableProps<DataType>['columns'] = [
   {
     title: 'Action',
     key: 'action',
-    render: (_, record) => <TableAction row={record} />,
+    render: (_, record) => <TableAction row={record} apiPath={modalFormConfig.branch.apiPath} />,
   },
 ];
 

@@ -89,7 +89,7 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
                     maxWidth: 'none',
                   }}
                 >
-                  <InfoCircleFilled className="text-primary text-sm absolute top-[-18px] right-[132px]" />
+                  <InfoCircleFilled className="text-primary text-sm absolute top-[-20px] right-[132px]" />
                 </Tooltip>
               </div>
               <Select

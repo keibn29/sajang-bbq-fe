@@ -47,7 +47,10 @@ const columns: TableProps<DataType>['columns'] = [
     title: 'Action',
     key: 'action',
     render: (_, record: DynamicKeyObject) => (
-      <TableAction row={{ ...record, utils: record.utils.map((util: DynamicKeyObject) => util.UtilityId) }} />
+      <TableAction
+        row={{ ...record, utils: record.utils.map((util: DynamicKeyObject) => util.UtilityId) }}
+        apiPath={modalFormConfig.branch.apiPath}
+      />
     ),
   },
 ];
