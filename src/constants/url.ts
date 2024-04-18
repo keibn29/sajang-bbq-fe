@@ -13,5 +13,8 @@ export const URL = {
     user: '/admin/user',
     branch: '/admin/branch',
     booking: '/admin/booking',
+    blog: '/admin/blog',
+    dish: '/admin/dish',
+    gallery: '/admin/gallery',
   },
 };

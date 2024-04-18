@@ -9,6 +9,9 @@ import Dashboard from 'app/page/Admin/Dashboard';
 import Branch from 'app/page/Admin/Branch';
 import { getPageName } from 'utils/app';
 import BookingMangament from 'app/page/Admin/Booking';
+import BlogMangament from 'app/page/Admin/Blog';
+import GalleryMangament from 'app/page/Admin/Gallery';
+import DishMangament from 'app/page/Admin/Dish';
 
 const CUSTOMER_LAYOUT = 'customer';
 const ADMIN_LAYOUT = 'admin';
@@ -92,6 +95,21 @@ const adminItems: ItemType[] = [
   {
     key: URL.admin.booking,
     components: <BookingMangament />,
+    layout: ADMIN_LAYOUT,
+  },
+  {
+    key: URL.admin.blog,
+    components: <BlogMangament />,
+    layout: ADMIN_LAYOUT,
+  },
+  {
+    key: URL.admin.gallery,
+    components: <GalleryMangament />,
+    layout: ADMIN_LAYOUT,
+  },
+  {
+    key: URL.admin.dish,
+    components: <DishMangament />,
     layout: ADMIN_LAYOUT,
   },
 ];

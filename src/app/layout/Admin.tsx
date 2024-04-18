@@ -35,6 +35,21 @@ const menu = [
     icon: <UserOutlined />,
     label: <Link to={URL.admin.booking}>Đơn đặt bàn</Link>,
   },
+  {
+    key: 'blog',
+    icon: <UserOutlined />,
+    label: <Link to={URL.admin.blog}>Blog</Link>,
+  },
+  {
+    key: 'gallery',
+    icon: <UserOutlined />,
+    label: <Link to={URL.admin.gallery}>Gallery</Link>,
+  },
+  {
+    key: 'dish',
+    icon: <UserOutlined />,
+    label: <Link to={URL.admin.dish}>Món ăn</Link>,
+  },
 ];
 
 const AdminLayout = (props: IProps) => {

@@ -1,8 +1,10 @@
+import BlogForm from 'app/page/Admin/Blog/Form';
 import BranchForm from 'app/page/Admin/Branch/Form';
+import GalleryForm from 'app/page/Admin/Gallery/Form';
 import UserForm from 'app/page/Admin/User/Form';
 import { IModalForm } from 'store/appSlice';
 
-export type IModalConfigKey = 'user' | 'branch' | 'dish' | 'blog';
+export type IModalConfigKey = 'user' | 'branch' | 'dish' | 'blog' | 'gallery';
 
 export const modalFormConfig: { [key in IModalConfigKey]: IModalForm } = {
   user: {
@@ -23,6 +25,11 @@ export const modalFormConfig: { [key in IModalConfigKey]: IModalForm } = {
   blog: {
     title: 'Bài đăng',
     apiPath: '/blog',
-    formElement: BranchForm,
+    formElement: BlogForm,
+  },
+  gallery: {
+    title: 'Ảnh trưng bày',
+    apiPath: '/gallery',
+    formElement: GalleryForm,
   },
 };
