@@ -1,7 +1,7 @@
 const Address = () => {
   return (
-    <div className="bg-home_address py-[80px] bg-no-repeat bg-cover">
-      <div className="w-[635px] mx-auto text-white text-center">
+    <div className="bg-home_address py-[80px] bg-no-repeat bg-cover address-container">
+      <div className="w-[635px] mx-auto text-white text-center relative">
         <p className="text-[45px]">ĐỊA ĐIỂM</p>
         <p className="text-base mt-5">
           Toạ lạc trên con đường đẹp nhất Hà Nội với 2 hàng cây rợp bóng 4 mùa, Sajang BBQ hiện hữu với vẻ sang trọng,

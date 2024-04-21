@@ -8,6 +8,10 @@ export const URL = {
   gallery: '/gallery',
   contact: '/contact',
   booking: '/booking',
+  user:{
+    information: '/user/information',
+    bookinghistory: '/user/bookinghistory',
+  },
   admin: {
     dashboard: '/admin',
     user: '/admin/user',

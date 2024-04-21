@@ -12,9 +12,13 @@ import BookingMangament from 'app/page/Admin/Booking';
 import BlogMangament from 'app/page/Admin/Blog';
 import GalleryMangament from 'app/page/Admin/Gallery';
 import DishMangament from 'app/page/Admin/Dish';
+import UserInformation from 'app/page/Users/Information';
+import UserLayout from 'app/layout/User';
+import BookingHistory from 'app/page/Users/BookingHistory';
 
 const CUSTOMER_LAYOUT = 'customer';
 const ADMIN_LAYOUT = 'admin';
+const USER_LAYOUT = 'user';
 const NONE_LAYOUT = 'none';
 
 const Home = lazy(() => import('app/page/Home'));
@@ -125,6 +129,16 @@ const sharedItems: ItemType[] = [
     components: <NotFound />,
     layout: NONE_LAYOUT,
   },
+  {
+    key: URL.user.information,
+    components: <UserInformation />,
+    layout: USER_LAYOUT,
+  },
+  {
+    key: URL.user.bookinghistory,
+    components: <BookingHistory />,
+    layout: USER_LAYOUT,
+  },
 ];
 
 export default function Routers() {
@@ -148,6 +162,9 @@ export default function Routers() {
 
         if (item.layout === ADMIN_LAYOUT) {
           element = <AdminLayout>{element}</AdminLayout>;
+        }
+        if (item.layout === USER_LAYOUT) {
+          element = <UserLayout>{element}</UserLayout>;
         }
 
         return <Route key={item.key} path={item.key} element={element} />;
