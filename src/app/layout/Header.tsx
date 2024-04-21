@@ -1,3 +1,4 @@
+import { EnvironmentFilled, PhoneFilled } from '@ant-design/icons';
 import { Avatar, Button, Flex } from 'antd';
 import { URL } from 'constants/url';
 import { Link, useNavigate } from 'react-router-dom';
@@ -46,29 +47,43 @@ const Header = () => {
   };
 
   return (
-    <div className="h-[70px] shadow-lg w-full fixed top-0 z-[99] bg-white">
-      <Flex className="max-w-[1425px] h-[100%] px-[90px] mx-auto" justify="space-between" align="center">
-        <Link to={URL.home} className="bg-logo bg-cover bg bg-center w-[100px] h-[50px]" />
-        <div>
-          {menus.map((item) => (
-            <Link
-              key={item.url}
-              to={item.url}
-              className="font-bold uppercase cursor-pointer p-[20px] hover:text-primary text-[#3c2311]"
-            >
-              <span>{item.text}</span>
-            </Link>
-          ))}
-        </div>
-        {!user?.id ? (
-          <Button onClick={() => handleAction('login')}>Log in</Button>
-        ) : (
-          <div>
-            <Avatar src={`${import.meta.env.VITE_API_ENPOINT}/${user.avatar}`} size={40} className="mr-2" />
-            <Button onClick={() => handleAction('logout')}>Log out</Button>
+    <div className="w-full fixed top-0 z-[99] ">
+      <div className="w-full bg-red h-[30px] shadow-lg">
+        <Flex className="max-w-[1425px] h-[100%] px-[90px] mx-auto" align="center">
+          <div className="text-white">
+            <EnvironmentFilled />
+            23 Phan Đình Phùng, Ba Đình, Hà Nội
           </div>
-        )}
-      </Flex>
+          <div className="text-white ml-3">
+            <PhoneFilled />
+            0886 399 099
+          </div>
+        </Flex>
+      </div>
+      <div className="w-full bg-white h-[70px] shadow-lg">
+        <Flex className="max-w-[1425px] h-[100%] px-[90px] mx-auto" justify="space-between" align="center">
+          <Link to={URL.home} className="bg-logo bg-cover bg bg-center w-[100px] h-[50px]" />
+          <div>
+            {menus.map((item) => (
+              <Link
+                key={item.url}
+                to={item.url}
+                className="font-bold uppercase cursor-pointer p-[20px] hover:text-primary text-[#3c2311]"
+              >
+                <span>{item.text}</span>
+              </Link>
+            ))}
+          </div>
+          {!user?.id ? (
+            <Button onClick={() => handleAction('login')}>Log in</Button>
+          ) : (
+            <div>
+              <Avatar src={`${import.meta.env.VITE_API_ENPOINT}/${user.avatar}`} size={40} className="mr-2" />
+              <Button onClick={() => handleAction('logout')}>Log out</Button>
+            </div>
+          )}
+        </Flex>
+      </div>
     </div>
   );
 };

@@ -48,6 +48,7 @@ export default {
       'dark-green': '#529949',
       'light-gray': '#F0F0F0',
       link: '#5284FF',
+      red: '#CF2B27',
     },
   },
   plugins: [],

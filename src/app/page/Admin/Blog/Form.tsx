@@ -1,5 +1,5 @@
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { Checkbox, Col, Form, Image, Input, Row, Upload, UploadProps } from 'antd';
+import { Col, Form, Image, Input, Row, Upload, UploadProps } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import { processGetQuery } from 'api';
 import { IFormProps } from 'model';
