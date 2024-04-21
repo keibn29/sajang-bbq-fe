@@ -126,3 +126,11 @@
 .ant-form-item-label {
   padding: 0 !important;
 }
+
+// image-list
+.image-list {
+  .ant-image {
+    width: 100%;
+    height: 100%;
+  }
+}

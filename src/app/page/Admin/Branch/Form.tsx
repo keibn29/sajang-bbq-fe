@@ -3,7 +3,7 @@ import { Checkbox, Col, Form, Image, Input, Row, Upload, UploadProps } from 'ant
 import { processGetQuery } from 'api';
 import { IFormProps } from 'model';
 import { useEffect, useState } from 'react';
-import { getBase64, isValisBeforeUpload } from 'utils/upload';
+import { getBase64Single, isValisBeforeUpload } from 'utils/upload';
 
 const BranchForm = (props: IFormProps) => {
   const { form, imageUrl, onChangeImageUrl } = props;
@@ -23,7 +23,7 @@ const BranchForm = (props: IFormProps) => {
       return;
     }
     if (info.file.status === 'done') {
-      getBase64(info.file.originFileObj, (url) => {
+      getBase64Single(info.file.originFileObj, (url) => {
         setIsLoading(false);
         onChangeImageUrl(url);
       });

@@ -5,7 +5,7 @@ import { IFormProps } from 'model';
 import { useState } from 'react';
 import { useAppSelector } from 'store';
 import { selectAppModalForm } from 'store/appSlice';
-import { getBase64, isValisBeforeUpload } from 'utils/upload';
+import { getBase64Single, isValisBeforeUpload } from 'utils/upload';
 
 const UserForm = (props: IFormProps) => {
   const { form, imageUrl, onChangeImageUrl } = props;
@@ -25,7 +25,7 @@ const UserForm = (props: IFormProps) => {
       return;
     }
     if (info.file.status === 'done') {
-      getBase64(info.file.originFileObj, (url) => {
+      getBase64Single(info.file.originFileObj, (url) => {
         setIsLoading(false);
         onChangeImageUrl(url);
       });

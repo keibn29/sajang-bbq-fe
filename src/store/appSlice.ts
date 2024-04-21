@@ -18,6 +18,7 @@ export interface IModalForm {
   apiPath: string;
   editedRow?: DynamicKeyObject;
   width?: number;
+  isFormData?: boolean;
   formElement: ((props: IFormProps) => JSX.Element) | null;
 }
 

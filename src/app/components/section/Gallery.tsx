@@ -1,70 +1,26 @@
-import { Col, Row } from 'antd';
+import { Col, Image, Row } from 'antd';
+import { processGetQuery } from 'api';
+import { DynamicKeyObject } from 'model';
+import { useState, useEffect } from 'react';
 
 const Gallery = () => {
+  const [images, setImages] = useState<DynamicKeyObject[]>([]);
+
+  useEffect(() => {
+    processGetQuery('/gallery').then((res) => {
+      setImages(res.galleries);
+    });
+  }, []);
+
   return (
     <div className="text-center">
       <span className="text-[45px] text-primary font-bold">GALLERY</span>
       <Row gutter={[10, 10]} className="!mx-[5px]">
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery1 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery2 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery3 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery4 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery2 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery1 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery4 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery3 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery1 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery2 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery3 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery4 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery2 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery1 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery4 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery3 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery1 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery2 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery3 w-full" />
-        </Col>
-        <Col span={6}>
-          <div className="bg-image h-[375px] bg-gallery4 w-full" />
-        </Col>
+        {images.map((image) => (
+          <Col key={image.id} span={6} className="image-list">
+            <Image src={`${import.meta.env.VITE_API_ENPOINT}/${image.url}`} className="!h-full" />
+          </Col>
+        ))}
       </Row>
     </div>
   );

@@ -7,7 +7,15 @@ import { selectAppModalForm } from 'store/appSlice';
 import { modalForm } from 'utils/app';
 
 const AppModalForm = () => {
-  const { isOpen, title, apiPath, width, editedRow, formElement: FormElement } = useAppSelector(selectAppModalForm);
+  const {
+    isOpen,
+    title,
+    apiPath,
+    width,
+    editedRow,
+    isFormData,
+    formElement: FormElement,
+  } = useAppSelector(selectAppModalForm);
   const [imageUrl, setImageUrl] = useState('');
 
   const handleCloseModal = () => {
@@ -19,6 +27,7 @@ const AppModalForm = () => {
   const { form, onSubmitForm } = useFormCustom({
     apiPath,
     editedRow,
+    isFormData,
     onClose: handleCloseModal,
   });
 

@@ -1,50 +1,134 @@
-import type { TableProps } from 'antd';
-import { Table, Image, Button } from 'antd';
-import AppPagination from 'app/components/common/AppPagination';
-import TableAction from 'app/components/custom/TableAction';
-import { modalFormConfig } from 'constants/modalForm';
+/* eslint-disable no-param-reassign */
+import { PlusOutlined } from '@ant-design/icons';
+import type { UploadFile, UploadProps } from 'antd';
+import { Image, Upload, message } from 'antd';
+import { RcFile } from 'antd/es/upload';
+import { processDeleteQuery, processGetQuery, processPostQuery } from 'api';
+import { cloneDeep, set } from 'lodash';
 import { DynamicKeyObject } from 'model';
-import { useState } from 'react';
-import { modalForm } from 'utils/app';
-
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-}
-
-const columns: TableProps<DataType>['columns'] = [
-  {
-    title: 'ID',
-    dataIndex: 'id',
-    key: 'id',
-  },
-  {
-    title: 'Image',
-    dataIndex: 'status',
-    render: (_, record: DynamicKeyObject) => (
-      <Image width={150} height={100} src={`${import.meta.env.VITE_API_ENPOINT}/${record?.avatar}`} />
-    ),
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => <TableAction row={record} apiPath={modalFormConfig.branch.apiPath} />,
-  },
-];
+import { useEffect, useMemo, useState } from 'react';
+import { useAppSelector } from 'store';
+import { selectAppLoading } from 'store/appSlice';
+import { confirmation, loading } from 'utils/app';
+import { getBase64Multi, isValisBeforeUpload } from 'utils/upload';
 
 const GalleryMangament = () => {
-  const [data, setData] = useState<DynamicKeyObject>({});
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+  const [fileList, setFileList] = useState<any[]>([]);
+  const isLoading = useAppSelector(selectAppLoading);
+  const [firstLoading, setFirstLoading] = useState<boolean>(true);
+
+  const handlePreview = async (file: UploadFile) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64Multi(file.originFileObj);
+    }
+
+    setPreviewImage(file.url || (file.preview as string));
+    setPreviewOpen(true);
+  };
+
+  const handleChange: UploadProps['onChange'] = (info) => {
+    const { status, originFileObj } = info.file;
+
+    if (status === 'uploading' && originFileObj) {
+      handleUploadGallery(originFileObj);
+    } else if (status === 'removed') {
+      handleRemoveGallery(+info.file.uid);
+    }
+  };
+
+  const handleUploadGallery = (file: RcFile) => {
+    loading.on();
+    const formData = new FormData();
+    formData.append('image', file);
+    processPostQuery('/gallery', formData, true).then((res: any) => {
+      const { gallery } = res;
+      const uploadtedFile = {
+        uid: gallery?.id,
+        name: gallery.url.split('\\').pop(),
+        status: 'done',
+        url: `${import.meta.env.VITE_API_ENPOINT}/${gallery.url}`,
+      };
+      const nextFileList = cloneDeep(fileList);
+      nextFileList.push(uploadtedFile);
+      setFileList(nextFileList);
+      message.success('Thêm ảnh thành công!');
+      loading.off();
+    });
+  };
+  console.log('fileList', fileList);
+
+  const handleRemoveGallery = (fileId: number) => {
+    confirmation({
+      type: 'multi',
+      message: 'Xác nhận xoá ảnh này?',
+      title: 'Xác nhận',
+      onSubmit: () => handleSubmitRemove(fileId),
+    });
+  };
+
+  const handleSubmitRemove = (fileId: number) => {
+    loading.on();
+    processDeleteQuery(`/gallery/${fileId}`).then(() => {
+      message.success('Xóa ảnh thành công!');
+      const nextFileList = cloneDeep(fileList).filter((file) => file.uid !== fileId);
+      setFileList(nextFileList);
+      loading.off();
+    });
+  };
+
+  useEffect(() => {
+    processGetQuery('/gallery').then((res) => {
+      const { galleries } = res;
+      const nextFileList = galleries.map((gallery: DynamicKeyObject) => ({
+        uid: gallery?.id,
+        name: gallery.url.split('\\').pop(),
+        status: 'done',
+        url: `${import.meta.env.VITE_API_ENPOINT}/${gallery.url}`,
+      }));
+      setFileList(nextFileList);
+      setFirstLoading(false);
+    });
+  }, []);
+
+  useEffect(() => {
+    firstLoading ? loading.on() : loading.off();
+  }, [firstLoading]);
 
   return (
     <>
-      <Button className="mb-5" onClick={() => modalForm.open(modalFormConfig.gallery)}>
-        Thêm mới
-      </Button>
-      <Table columns={columns} dataSource={data.booking} pagination={false} />
-      <AppPagination onChangeDataTable={setData} apiPath={'/booking'} />
+      {!firstLoading && (
+        <>
+          <Upload
+            listType="picture-card"
+            customRequest={({ file, onSuccess }) => {
+              onSuccess && onSuccess('ok');
+            }}
+            beforeUpload={isValisBeforeUpload}
+            multiple={true}
+            fileList={fileList}
+            onPreview={handlePreview}
+            onChange={handleChange}
+          >
+            <button style={{ border: 0, background: 'none' }} type="button">
+              <PlusOutlined />
+              <div style={{ marginTop: 8 }}>Upload</div>
+            </button>
+          </Upload>
+          {previewImage && (
+            <Image
+              wrapperStyle={{ display: 'none' }}
+              preview={{
+                visible: previewOpen,
+                onVisibleChange: (visible) => setPreviewOpen(visible),
+                afterOpenChange: (visible) => !visible && setPreviewImage(''),
+              }}
+              src={previewImage}
+            />
+          )}
+        </>
+      )}
     </>
   );
 };

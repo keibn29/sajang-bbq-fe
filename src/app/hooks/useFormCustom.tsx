@@ -10,14 +10,14 @@ interface IProps {
   apiPath: string;
   onClose: () => void;
   editedRow?: DynamicKeyObject;
+  isFormData?: boolean;
 }
 
 function useFormCustom(props: IProps) {
-  const { apiPath, editedRow, onClose } = props;
+  const { apiPath, editedRow, isFormData, onClose } = props;
   const [form] = useForm();
 
   const generateFormData = (formValues: any) => {
-    console.log('formValues', formValues);
     const formData = new FormData();
     keys(formValues).forEach((key) => {
       formData.append(key, formValues[key]);
@@ -32,7 +32,7 @@ function useFormCustom(props: IProps) {
     const url = !editedRow?.id ? apiPath : `${apiPath}/${editedRow.id}`;
     const queryFn = !editedRow?.id ? processPostQuery : processPutQuery;
 
-    queryFn(url, formData, true).then(() => {
+    queryFn(url, formData, isFormData).then(() => {
       onClose();
       message.success('Cập nhật thông tin thành công');
       reloadPaginatedData();

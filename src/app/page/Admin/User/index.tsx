@@ -7,15 +7,7 @@ import { DynamicKeyObject } from 'model';
 import { useState } from 'react';
 import { modalForm } from 'utils/app';
 
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-}
-
-const columns: TableProps<DataType>['columns'] = [
+const columns: TableProps<any>['columns'] = [
   {
     title: 'Avatar',
     key: 'avatar',
