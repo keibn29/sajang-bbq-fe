@@ -1,15 +1,16 @@
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { Col, Form, Image, Input, Row, Upload, UploadProps } from 'antd';
-import TextArea from 'antd/es/input/TextArea';
-import { processGetQuery } from 'api';
 import { IFormProps } from 'model';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { getBase64Single, isValisBeforeUpload } from 'utils/upload';
 
 const BlogForm = (props: IFormProps) => {
   const { form, imageUrl, onChangeImageUrl } = props;
   const [isLoading, setIsLoading] = useState(false);
-  const [utils, setUtils] = useState<any[]>([]);
+  const content = form?.getFieldValue('content');
+  const ckData = useMemo(() => content, [content]);
 
   const uploadButton = (
     <button style={{ border: 0, background: 'none' }} type="button">
@@ -30,24 +31,12 @@ const BlogForm = (props: IFormProps) => {
       });
     }
   };
-
-  useEffect(() => {
-    processGetQuery('/utility').then((data) => {
-      setUtils(data.utils);
-    });
-  }, []);
-
   return (
     <Form form={form} initialValues={{ remember: true }} labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
       <Row gutter={[10, 0]}>
-        <Col span={24}>
+        <Col span={12}>
           <Form.Item label="Title" name="title" rules={[{ required: true, message: `Please input blog title!` }]}>
             <Input size="large" placeholder={`Input blog title`} allowClear />
-          </Form.Item>
-        </Col>
-        <Col span={24}>
-          <Form.Item label="Content" name="content" rules={[{ required: true, message: `Please input blog content!` }]}>
-            <TextArea autoSize={{ minRows: 4, maxRows: 4 }} placeholder={`Input blog content`} />
           </Form.Item>
         </Col>
         <Col span={3}>
@@ -70,6 +59,17 @@ const BlogForm = (props: IFormProps) => {
             <Image src={imageUrl} height={150} width={250} />
           </Col>
         )}
+        <Col span={24}>
+          <Form.Item label="Content" name="content" rules={[{ required: true, message: `Please input blog content!` }]}>
+            <CKEditor
+              editor={ClassicEditor}
+              data={ckData}
+              onChange={(event, editor) => {
+                form?.setFieldsValue({ content: editor.data.get() });
+              }}
+            />
+          </Form.Item>
+        </Col>
       </Row>
     </Form>
   );

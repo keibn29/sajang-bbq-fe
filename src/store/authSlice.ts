@@ -39,7 +39,7 @@ export const slice = createSlice({
       state.user = null;
       state.accessToken = '';
     },
-    actionSetUserRegister(state, action) {
+    actionUpdateUserLogin(state, action) {
       state.user = action.payload;
     },
   },
@@ -58,7 +58,7 @@ export const slice = createSlice({
   },
 });
 
-export const { actionLogout, actionSetUserRegister } = slice.actions;
+export const { actionLogout, actionUpdateUserLogin } = slice.actions;
 
 export const selectUser = (state: RootState) => state.auth.user;
 export const selectLoading = (state: RootState) => state.auth.user;

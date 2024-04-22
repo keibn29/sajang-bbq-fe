@@ -9,31 +9,23 @@ import { modalForm } from 'utils/app';
 
 const columns: TableProps<any>['columns'] = [
   {
-    title: 'ID',
-    dataIndex: 'id',
-    key: 'id',
+    title: 'Title',
+    dataIndex: 'title',
+    key: 'title',
   },
   {
     title: 'Image',
-    dataIndex: 'status',
+    key: 'image',
     render: (_, record: DynamicKeyObject) => (
-      <Image width={150} height={100} src={`${import.meta.env.VITE_API_ENPOINT}/${record?.avatar}`} />
+      <Image width={150} height={100} src={`${import.meta.env.VITE_API_ENPOINT}/${record?.imageUrl}`} />
     ),
-  },
-  {
-    title: 'Title',
-    dataIndex: 'branch',
-    render: (_, record: DynamicKeyObject) => record?.branch?.name,
-  },
-  {
-    title: 'Content',
-    dataIndex: 'customer',
-    render: (_, record: DynamicKeyObject) => `${record?.customer?.firstName} ${record?.customer?.lastName}`,
   },
   {
     title: 'Action',
     key: 'action',
-    render: (_, record) => <TableAction row={record} apiPath={modalFormConfig.branch.apiPath} />,
+    render: (_, record) => (
+      <TableAction row={{ ...record, avatar: record.imageUrl }} apiPath={modalFormConfig.blog.apiPath} />
+    ),
   },
 ];
 
@@ -45,8 +37,8 @@ const BlogMangament = () => {
       <Button className="mb-5" onClick={() => modalForm.open(modalFormConfig.blog)}>
         Thêm mới
       </Button>
-      <Table columns={columns} dataSource={data.blog} pagination={false} />
-      <AppPagination onChangeDataTable={setData} apiPath={'/branch'} />
+      <Table columns={columns} dataSource={data.blogs} pagination={false} />
+      <AppPagination onChangeDataTable={setData} apiPath={modalFormConfig.blog.apiPath} />
     </>
   );
 };

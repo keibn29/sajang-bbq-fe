@@ -1,8 +1,7 @@
 import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Button, Layout, Menu, theme } from 'antd';
-import AvatarImage from 'assets/images/concept.jpg';
 import { URL } from 'constants/url';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store';
 import { actionLogout, selectUser } from 'store/authSlice';
@@ -17,37 +16,30 @@ interface IProps {
 const menu = [
   {
     key: 'admin',
-    icon: <UserOutlined />,
     label: <Link to={URL.admin.dashboard}>Dashboard</Link>,
   },
   {
     key: 'user',
-    icon: <UserOutlined />,
     label: <Link to={URL.admin.user}>Người dùng</Link>,
   },
   {
     key: 'branch',
-    icon: <UserOutlined />,
     label: <Link to={URL.admin.branch}>Chi nhánh</Link>,
   },
   {
     key: 'booking',
-    icon: <UserOutlined />,
     label: <Link to={URL.admin.booking}>Đơn đặt bàn</Link>,
   },
   {
     key: 'blog',
-    icon: <UserOutlined />,
     label: <Link to={URL.admin.blog}>Blog</Link>,
   },
   {
     key: 'gallery',
-    icon: <UserOutlined />,
     label: <Link to={URL.admin.gallery}>Gallery</Link>,
   },
   {
     key: 'dish',
-    icon: <UserOutlined />,
     label: <Link to={URL.admin.dish}>Món ăn</Link>,
   },
 ];

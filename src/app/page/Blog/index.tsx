@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 const Blog = () => {
   const [data, setData] = useState<DynamicKeyObject>({});
+  console.log('data', data);
 
   return (
     <div>
@@ -17,11 +18,10 @@ const Blog = () => {
                   <Col span={8}>
                     <div className="w-full h-full bg-image bg-blog1" />
                   </Col>
-                  <Col span={16}>
+                  <Col span={16} className="pl-3">
                     <p className="uppercase text-[#3d2d22] text-lg mt-5">
                       FESTIVAL FREEFLOW - REFILL ĐỒ UỐNG KHÔNG GIỚI HẠN CHỈ TỪ 89K
                     </p>
-                    <p className="text-xs text-[#adadad]">Tháng Mười Hai 27, 2023</p>
                     <p className="text-[#777777] text-sm mt-3 line-clamp-4">
                       Mùa lễ hội năm nay, Sajang mang đến một không khí đặc biệt vô cùng dành cho thực khách, nổi bật
                       với nhiều món ngon độc đáo trong menu mới và chương trình FREEFLOW chưa từng có tại nhà hàng.
@@ -34,7 +34,7 @@ const Blog = () => {
           ))}
         </Row>
         <Row>
-          <AppPagination onChangeDataTable={setData} apiPath="/user" align="center" />
+          <AppPagination onChangeDataTable={setData} apiPath="/blog" align="center" />
         </Row>
       </div>
     </div>

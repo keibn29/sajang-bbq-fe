@@ -8,9 +8,9 @@ export const URL = {
   gallery: '/gallery',
   contact: '/contact',
   booking: '/booking',
-  user:{
-    information: '/user/information',
-    bookinghistory: '/user/bookinghistory',
+  profile: {
+    information: '/profile/information',
+    bookinghistory: '/profile/bookinghistory',
   },
   admin: {
     dashboard: '/admin',

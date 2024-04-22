@@ -1,7 +1,7 @@
 import { LockOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row, message } from 'antd';
 import { useAppDispatch } from 'store';
-import { actionSetUserRegister } from 'store/authSlice';
+import { actionUpdateUserLogin } from 'store/authSlice';
 import request from 'utils/request';
 
 interface IProps {
@@ -13,11 +13,11 @@ function Singup(props: Readonly<IProps>) {
   const dispatch = useAppDispatch();
 
   const handleSignup = (values: any) => {
-    const data = { ...values, role: 'NORMAL' };
+    const data = { ...values, role: 'CUSTOMER' };
     request({ url: '/user', method: 'POST', data }).then((res) => {
       const { user } = res.data;
       message.success('Đăng kí tài khoản thành công');
-      dispatch(actionSetUserRegister(user));
+      dispatch(actionUpdateUserLogin(user));
     });
   };
 
@@ -64,7 +64,20 @@ function Singup(props: Readonly<IProps>) {
           <Form.Item
             label="Repeat password"
             name="rePassword"
-            rules={[{ required: true, message: 'Please repeat your Password!' }]}
+            rules={[
+              {
+                required: true,
+                message: 'Please confirm your password!',
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('The new password that you entered do not match!'));
+                },
+              }),
+            ]}
           >
             <Input
               size="large"

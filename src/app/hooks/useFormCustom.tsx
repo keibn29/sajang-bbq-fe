@@ -18,6 +18,7 @@ function useFormCustom(props: IProps) {
   const [form] = useForm();
 
   const generateFormData = (formValues: any) => {
+    console.log('formValues', formValues);
     const formData = new FormData();
     keys(formValues).forEach((key) => {
       formData.append(key, formValues[key]);
@@ -27,16 +28,16 @@ function useFormCustom(props: IProps) {
   };
 
   const handleCallApi = (formValues: any) => {
-    loading.on();
+    // loading.on();
     const formData = generateFormData(formValues);
     const url = !editedRow?.id ? apiPath : `${apiPath}/${editedRow.id}`;
     const queryFn = !editedRow?.id ? processPostQuery : processPutQuery;
 
-    queryFn(url, formData, isFormData).then(() => {
-      onClose();
-      message.success('Cập nhật thông tin thành công');
-      reloadPaginatedData();
-    });
+    // queryFn(url, formData, isFormData).then(() => {
+    //   onClose();
+    //   message.success('Cập nhật thông tin thành công');
+    //   reloadPaginatedData();
+    // });
   };
 
   const onSubmitForm = () => {

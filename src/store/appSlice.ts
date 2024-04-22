@@ -52,7 +52,7 @@ const initialState: IAppState = {
   },
   pagination: {
     current: 1,
-    size: 5,
+    size: 10,
   },
 };
 

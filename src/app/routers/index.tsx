@@ -1,20 +1,19 @@
+import AdminLayout from 'app/layout/Admin/index';
+import CustomerLayout from 'app/layout/Customer/index';
+import UserLayout from 'app/layout/User/index';
+import BlogMangament from 'app/page/Admin/Blog';
+import BookingMangament from 'app/page/Admin/Booking';
+import Branch from 'app/page/Admin/Branch';
+import Dashboard from 'app/page/Admin/Dashboard';
+import DishMangament from 'app/page/Admin/Dish';
+import GalleryMangament from 'app/page/Admin/Gallery';
+import User from 'app/page/Admin/User';
+import NotFound from 'app/page/NotFound';
+import BookingHistory from 'app/page/Profile/BookingHistory';
+import UserInformation from 'app/page/Profile/Information';
+import { URL } from 'constants/url';
 import { lazy, ReactElement, Suspense, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import NotFound from 'app/page/NotFound';
-import CustomerLayout from 'app/layout/Customer';
-import { URL } from 'constants/url';
-import User from 'app/page/Admin/User';
-import AdminLayout from 'app/layout/Admin';
-import Dashboard from 'app/page/Admin/Dashboard';
-import Branch from 'app/page/Admin/Branch';
-import { getPageName } from 'utils/app';
-import BookingMangament from 'app/page/Admin/Booking';
-import BlogMangament from 'app/page/Admin/Blog';
-import GalleryMangament from 'app/page/Admin/Gallery';
-import DishMangament from 'app/page/Admin/Dish';
-import UserInformation from 'app/page/Users/Information';
-import UserLayout from 'app/layout/User';
-import BookingHistory from 'app/page/Users/BookingHistory';
 
 const CUSTOMER_LAYOUT = 'customer';
 const ADMIN_LAYOUT = 'admin';
@@ -130,12 +129,12 @@ const sharedItems: ItemType[] = [
     layout: NONE_LAYOUT,
   },
   {
-    key: URL.user.information,
+    key: URL.profile.information,
     components: <UserInformation />,
     layout: USER_LAYOUT,
   },
   {
-    key: URL.user.bookinghistory,
+    key: URL.profile.bookinghistory,
     components: <BookingHistory />,
     layout: USER_LAYOUT,
   },
@@ -163,6 +162,7 @@ export default function Routers() {
         if (item.layout === ADMIN_LAYOUT) {
           element = <AdminLayout>{element}</AdminLayout>;
         }
+
         if (item.layout === USER_LAYOUT) {
           element = <UserLayout>{element}</UserLayout>;
         }

@@ -16,7 +16,7 @@ const Gallery = () => {
     <div className="text-center">
       <span className="text-[45px] text-primary font-bold">GALLERY</span>
       <Row gutter={[10, 10]} className="!mx-[5px]">
-        {images.map((image) => (
+        {images.slice(0, 24).map((image) => (
           <Col key={image.id} span={6} className="image-list">
             <Image src={`${import.meta.env.VITE_API_ENPOINT}/${image.url}`} className="!h-full" />
           </Col>

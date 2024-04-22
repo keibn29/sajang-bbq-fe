@@ -73,7 +73,20 @@ const UserForm = (props: IFormProps) => {
           <Form.Item
             label="Repeat password"
             name="rePassword"
-            rules={[{ required: true, message: 'Please repeat your Password!' }]}
+            rules={[
+              {
+                required: true,
+                message: 'Please confirm your password!',
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('The new password that you entered do not match!'));
+                },
+              }),
+            ]}
           >
             <Input
               size="large"
@@ -137,7 +150,7 @@ const UserForm = (props: IFormProps) => {
             <Select
               options={[
                 { value: 'ADMIN', label: 'Admin' },
-                { value: 'NORMAL', label: 'Normal' },
+                { value: 'CUSTOMER', label: 'Normal' },
               ]}
               size="large"
             />

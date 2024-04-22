@@ -5,6 +5,7 @@ import BookingAction from 'app/components/custom/BookingAction';
 import { BOOKING_STATUS } from 'constants/app';
 import { DynamicKeyObject } from 'model';
 import { useState } from 'react';
+import DetailBooking from './DetailBooking';
 
 const columns: TableProps<any>['columns'] = [
   {
@@ -41,11 +42,33 @@ const columns: TableProps<any>['columns'] = [
 
 const BookingMangament = () => {
   const [data, setData] = useState<DynamicKeyObject>({});
+  const [isOpenDetailBooking, setIsOpenDetailBooking] = useState<boolean>(false);
+  const [clickedRow, setClickedRow] = useState<DynamicKeyObject>({});
+
+  const handleClickRow = (record: any) => {
+    setClickedRow(record);
+    setIsOpenDetailBooking(true);
+  };
 
   return (
     <>
-      <Table columns={columns} dataSource={data.booking} pagination={false} />
+      <Table
+        columns={columns}
+        dataSource={data.booking}
+        pagination={false}
+        onRow={(record) => ({
+          onClick: () => handleClickRow(record),
+        })}
+      />
       <AppPagination onChangeDataTable={setData} apiPath={'/booking'} />
+      {isOpenDetailBooking && (
+        <DetailBooking
+          isOpen={isOpenDetailBooking}
+          handleCloseModal={() => setIsOpenDetailBooking(false)}
+          handleSubmitForm={() => setIsOpenDetailBooking(false)}
+          row={clickedRow}
+        />
+      )}
     </>
   );
 };

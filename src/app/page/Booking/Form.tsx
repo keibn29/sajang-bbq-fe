@@ -1,6 +1,7 @@
 import { InfoCircleFilled, UserOutlined } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, Modal, Row, Select, Tooltip, message } from 'antd';
 import { useForm } from 'antd/es/form/Form';
+import { DefaultOptionType } from 'antd/es/select';
 import { processGetQuery, processPostQuery } from 'api';
 import dayjs from 'dayjs';
 import { DynamicKeyObject } from 'model';
@@ -8,18 +9,21 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from 'store';
 import { selectUser } from 'store/authSlice';
+import { loading } from 'utils/app';
 
 const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: DynamicKeyObject }) => {
   const { isOpen, branch, onClose } = props;
   const user = useAppSelector(selectUser);
   const [form] = useForm();
   const [schedules, setSchedules] = useState<any>([]);
+  const [dishes, setDishes] = useState<any>([]);
   const [params, setParams] = useState<DynamicKeyObject>({
     table: 1,
     date: moment().format('DD/MM/YYYY'),
     scheduleId: null,
     customerId: user?.id,
     branchId: branch?.id,
+    dishes: [],
   });
 
   const handleSubmitForm = () => {
@@ -28,9 +32,12 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
       message.error('Vui lòng bổ sung đầy đủ thông tin');
       return;
     }
+
+    loading.on();
     processPostQuery('/booking', params).then(() => {
       handleCloseModal();
       message.success('Đặt bàn thành công');
+      loading.off();
     });
   };
 
@@ -39,8 +46,20 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
     form.resetFields();
   };
 
+  const handleChangeSelect = (value: any) => {
+    console.log('value', value);
+    setParams((prev) => ({ ...prev, dishes: value }));
+  };
+
   useEffect(() => {
     processGetQuery('/schedule').then((data) => setSchedules(data.schedules));
+    processGetQuery('/dish').then((data) => {
+      const nextDishes = data.dishes.map((dish: DynamicKeyObject) => ({
+        value: dish.id,
+        label: dish.name,
+      }));
+      setDishes(nextDishes);
+    });
   }, []);
 
   useEffect(() => {
@@ -143,14 +162,12 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
               <Select
                 size="large"
                 mode="multiple"
-                defaultValue={['lucy']}
-                placeholder="Borderless"
+                placeholder="Chọn ăn đặt kèm"
                 style={{ flex: 1 }}
-                options={[
-                  { value: 'jack', label: 'Jack' },
-                  { value: 'lucy', label: 'Lucy' },
-                  { value: 'Yiminghe', label: 'yiminghe' },
-                ]}
+                options={dishes}
+                onChange={handleChangeSelect}
+                showSearch={false}
+                allowClear
               />
             </Form.Item>
           </Col>

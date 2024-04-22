@@ -84,7 +84,9 @@ const Booking = () => {
           <Image height="100%" width="100%" src={`${import.meta.env.VITE_API_ENPOINT}/${selectedBranch?.avatar}`} />
         </Col>
       </Row>
-      <BookingForm isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} branch={selectedBranch} />
+      {isOpenModal && (
+        <BookingForm isOpen={isOpenModal} onClose={() => setIsOpenModal(false)} branch={selectedBranch} />
+      )}
     </div>
   );
 };
