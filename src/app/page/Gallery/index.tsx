@@ -1,14 +1,25 @@
 import { Button, Col, Image, Row } from 'antd';
+import { processGetQuery } from 'api';
 import drink1 from 'assets/images/menu/logo-bia-tiger-crystal_091106427.jpeg';
+import { DynamicKeyObject } from 'model';
+import { useEffect, useState } from 'react';
 
 const Gallery = () => {
-  const data = Array.from({ length: 12 });
+  const [data, setData] = useState<DynamicKeyObject[]>([]);
+
+  useEffect(() => {
+    processGetQuery('/gallery', { current: 1, size: 8 }).then((res) => {
+      setData(res.galleries);
+    });
+  }, []);
+
+  const data1 = Array.from({ length: 12 });
   return (
     <div>
       <Row className="max-w-[1200px] !mx-auto py-[50px]">
         <Col span={16} className="w-full h-[500px]">
           <Row className="w-full" gutter={[12, 12]}>
-            {data.map((_, item) => (
+            {data1.map((_, item) => (
               <Col key={item} span={6} className="w-full h-[100px] ">
                 <Image src={drink1} />
               </Col>
@@ -25,7 +36,7 @@ const Gallery = () => {
         </Col>
         <Col span={16} className="w-full h-[500px]">
           <Row className="w-full" gutter={[12, 12]}>
-            {data.map((_, item) => (
+            {data1.map((_, item) => (
               <Col key={item} span={6} className="w-full h-[100px] ">
                 <Image src={drink1} />
               </Col>
@@ -34,7 +45,7 @@ const Gallery = () => {
         </Col>
         <Col span={16} className="w-full h-[500px]">
           <Row className="w-full" gutter={[12, 12]}>
-            {data.map((_, item) => (
+            {data1.map((_, item) => (
               <Col key={item} span={6} className="w-full h-[100px] ">
                 <Image src={drink1} />
               </Col>
@@ -47,9 +58,9 @@ const Gallery = () => {
         </Col>
       </Row>
       <Row className="!mx-auto py-[50px]">
-        {Array.from({ length: 8 }).map((_, item) => (
-          <Col key={item} span={6} className="w-full h-[300px] ">
-            <Image src={drink1} width="100%" height={300} />
+        {data.map((item: DynamicKeyObject) => (
+          <Col key={item.id} span={6} className="w-full h-[300px] image-list">
+            <Image src={`${import.meta.env.VITE_API_ENPOINT}/${item.url}`} width="100%" height={300} />
           </Col>
         ))}
       </Row>

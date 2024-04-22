@@ -7,7 +7,7 @@ const Gallery = () => {
   const [images, setImages] = useState<DynamicKeyObject[]>([]);
 
   useEffect(() => {
-    processGetQuery('/gallery').then((res) => {
+    processGetQuery('/gallery', { current: 1, size: 24 }).then((res) => {
       setImages(res.galleries);
     });
   }, []);
@@ -16,7 +16,7 @@ const Gallery = () => {
     <div className="text-center">
       <span className="text-[45px] text-primary font-bold">GALLERY</span>
       <Row gutter={[10, 10]} className="!mx-[5px]">
-        {images.slice(0, 24).map((image) => (
+        {images.map((image) => (
           <Col key={image.id} span={6} className="image-list">
             <Image src={`${import.meta.env.VITE_API_ENPOINT}/${image.url}`} className="!h-full" />
           </Col>
