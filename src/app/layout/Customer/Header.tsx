@@ -78,7 +78,9 @@ const Header = () => {
             <Button onClick={() => handleAction('login')}>Log in</Button>
           ) : (
             <div>
-              <Avatar src={`${import.meta.env.VITE_API_ENPOINT}/${user.avatar}`} size={40} className="mr-2" />
+              <Link to={URL.profile.information}>
+                <Avatar src={`${import.meta.env.VITE_API_ENPOINT}/${user.avatar}`} size={40} className="mr-2" />
+              </Link>
               <Button onClick={() => handleAction('logout')}>Log out</Button>
             </div>
           )}
