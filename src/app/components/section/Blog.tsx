@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const Blog = () => {
   const [data, setData] = useState<DynamicKeyObject[]>([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     processGetQuery('/blog', { current: 1, size: 3 }).then((res) => {
       setData(res.blogs);

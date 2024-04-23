@@ -1,9 +1,12 @@
 import { Col, Image, Row } from 'antd';
 import AppPagination from 'app/components/common/AppPagination';
+import { URL } from 'constants/url';
 import { DynamicKeyObject } from 'model';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Blog = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState<DynamicKeyObject>({});
 
   return (
@@ -11,7 +14,7 @@ const Blog = () => {
       <div className="mt-[50px]">
         <Row gutter={10} className="max-w-[1500px] !mx-auto">
           {data.blogs?.map((item: DynamicKeyObject) => (
-            <Col key={item.id} span={12} className="px-3 ">
+            <Col key={item.id} span={12} className="px-3" onClick={() => navigate(URL.blogdetails, { state: item })}>
               <div className="h-full border-b-solid border-b-[1px] border-b-[#dddddd] pb-2 cursor-pointer">
                 <Row>
                   <Col span={8} className="image-list">
