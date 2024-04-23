@@ -144,7 +144,7 @@ const UserForm = (props: IFormProps) => {
           <Form.Item
             label="Role"
             name="role"
-            initialValue="NORMAL"
+            initialValue="CUSTOMER"
             rules={[{ required: true, message: 'Please select user role!' }]}
           >
             <Select
