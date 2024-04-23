@@ -17,7 +17,7 @@ function Login(props: Readonly<IProps>) {
 
   return (
     <div>
-      <h1 className="text-center mb-5">LOGIN</h1>
+      <h1 className="text-center mb-5 uppercase">Đăng nhập</h1>
       <Form
         name="normal_login"
         className="w-[400px]"
@@ -27,43 +27,43 @@ function Login(props: Readonly<IProps>) {
         wrapperCol={{ span: 24 }}
       >
         <Form.Item
-          label="Email"
+          label="Tài khoản"
           name="email"
           rules={[
-            { required: true, message: 'Please input your Email!' },
-            { type: 'email', message: 'Email is not valid!' },
+            { required: true, message: 'Vui lòng nhập Email của bạn!' },
+            { type: 'email', message: 'Email không hợp lệ!' },
           ]}
         >
           <Input
             size="large"
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Input your email"
+            placeholder="Nhập email của bạn"
             allowClear
           />
         </Form.Item>
         <Form.Item
-          label="Password"
+          label="Mật khẩu"
           name="password"
-          rules={[{ required: true, message: 'Please input your Password!' }]}
+          rules={[{ required: true, message: 'Vui lòng nhập Mật khẩu của bạn!' }]}
         >
           <Input
             size="large"
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Input your password"
+            placeholder="Nhập mật khẩu của bạn"
             allowClear
           />
         </Form.Item>
         <Form.Item>
-          <span className="text-link select-none cursor-pointer float-right">Forgot password</span>
+          <span className="text-link select-none cursor-pointer float-right">Quên mật khẩu</span>
         </Form.Item>
         <Form.Item>
           <Button type="primary" size="large" htmlType="submit" className="w-full mb-1">
-            Login
+            Đăng nhập
           </Button>
-          Or{' '}
+          Hoặc{' '}
           <span className="text-link select-none cursor-pointer" onClick={onSignup}>
-            register now!
+            Đăng ký ngay!
           </span>
         </Form.Item>
       </Form>

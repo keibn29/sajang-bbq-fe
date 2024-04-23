@@ -21,27 +21,27 @@ const columns: TableProps<DataType>['columns'] = [
     key: 'id',
   },
   {
-    title: 'Branch',
+    title: 'Tên chi nhánh',
     dataIndex: 'branch',
     render: (_, record: DynamicKeyObject) => record?.branch?.name,
   },
   {
-    title: 'Table',
+    title: 'Số bàn',
     dataIndex: 'phone',
     render: (_, record: DynamicKeyObject) => record?.customer?.phone,
   },
   {
-    title: 'Date',
+    title: 'Ngày đặt',
     dataIndex: 'phone',
     render: (_, record: DynamicKeyObject) => record?.customer?.phone,
   },
   {
-    title: 'Time',
+    title: 'Thời gian đặt',
     dataIndex: 'phone',
     render: (_, record: DynamicKeyObject) => record?.customer?.phone,
   },
   {
-    title: 'Status',
+    title: 'Trạng thái',
     dataIndex: 'status',
     render: (_, record: DynamicKeyObject) => BOOKING_STATUS[record.status],
   },

@@ -36,7 +36,6 @@ const Menu = () => {
             Bên cạnh đó, thực đơn sushi và sashimi cho các thực khách các sự lựa cho mới lạ và đa dạng hơn. Ăn kèm là
             các loại Panchan và món nóng độc đáo và hấp dẫn.
           </p>
-          <Button type="primary">Xem Menu</Button>
         </Col>
       </Row>
       <Row className="max-w-[1200px] !mx-auto py-[10px]">
@@ -113,7 +112,6 @@ const Menu = () => {
             nguyên liệu đặc sắc như thịt bò Wagyu, Tôm hùm và Cua hoàng đế nướng than củi ăn cùng nấm Đông Cô, Linh
             Chi,….
           </p>
-          <Button type="primary">Xem Menu</Button>
         </Col>
         <Col span={12} className="w-full h-[350px] bg-add6 bg-image" />
       </Row>
@@ -139,7 +137,6 @@ const Menu = () => {
           <p className="text-base mt-5 text-justify">
             Menu đồ uống phong phú được thiết kế phù hợp với các món ăn Hàn Quốc.
           </p>
-          <Button type="primary">Xem Menu</Button>
         </Col>
       </Row>
     </div>

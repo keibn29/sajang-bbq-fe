@@ -9,34 +9,34 @@ import { modalForm } from 'utils/app';
 
 const columns: TableProps<any>['columns'] = [
   {
-    title: 'Image',
+    title: 'Ảnh chi nhánh',
     key: 'image',
     render: (_, record: DynamicKeyObject) => (
       <Image width={150} height={100} src={`${import.meta.env.VITE_API_ENPOINT}/${record?.avatar}`} />
     ),
   },
   {
-    title: 'Name',
+    title: 'Tên chi nhánh',
     dataIndex: 'name',
     key: 'name',
   },
   {
-    title: 'Table',
+    title: 'Số lượng bàn',
     dataIndex: 'table',
     key: 'table',
   },
   {
-    title: 'Address',
+    title: 'Địa chỉ',
     dataIndex: 'address',
     key: 'address',
   },
   {
-    title: 'Phone number',
+    title: 'Số điện thoại',
     dataIndex: 'phone',
     key: 'phone',
   },
   {
-    title: 'Action',
+    title: 'Hành động',
     key: 'action',
     render: (_, record: DynamicKeyObject) => (
       <TableAction

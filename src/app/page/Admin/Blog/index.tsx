@@ -9,19 +9,19 @@ import { modalForm } from 'utils/app';
 
 const columns: TableProps<any>['columns'] = [
   {
-    title: 'Title',
+    title: 'Tiêu đề',
     dataIndex: 'title',
     key: 'title',
   },
   {
-    title: 'Image',
+    title: 'Hình ảnh',
     key: 'image',
     render: (_, record: DynamicKeyObject) => (
       <Image width={150} height={100} src={`${import.meta.env.VITE_API_ENPOINT}/${record?.imageUrl}`} />
     ),
   },
   {
-    title: 'Action',
+    title: 'Hành động',
     key: 'action',
     render: (_, record) => (
       <TableAction row={{ ...record, avatar: record.imageUrl }} apiPath={modalFormConfig.blog.apiPath} />

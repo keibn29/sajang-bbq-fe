@@ -8,6 +8,7 @@ export const URL = {
   gallery: '/gallery',
   contact: '/contact',
   booking: '/booking',
+  blogdetails: '/blogdetails',
   profile: {
     information: '/profile/information',
     bookinghistory: '/profile/bookinghistory',

@@ -77,14 +77,8 @@ const UserInformation = () => {
             </Form.Item>
           </Col>
           <Col span={6}>
-            <Form.Item label="Email" name="email" initialValue={user?.email}>
-              <Input
-                size="large"
-                prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="Input your email"
-                allowClear
-                disabled
-              />
+            <Form.Item label="Tài khoản" name="email" initialValue={user?.email}>
+              <Input size="large" prefix={<UserOutlined className="site-form-item-icon" />} allowClear disabled />
             </Form.Item>
           </Col>
           <Col span={6}>
@@ -96,30 +90,30 @@ const UserInformation = () => {
         <Row gutter={[10, 0]}>
           <Col span={6}>
             <Form.Item
-              label="First name"
-              name="firstName"
-              initialValue={user?.firstName}
-              rules={[{ required: true, message: 'Please input your first name!' }]}
+              label="Họ"
+              name="lastName"
+              initialValue={user?.lastName}
+              rules={[{ required: true, message: 'Vui lòng nhập họ của bạn!' }]}
             >
               <Input
                 size="large"
                 prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="Input your first name"
+                placeholder="Nhập họ của bạn"
                 allowClear
               />
             </Form.Item>
           </Col>
           <Col span={6}>
             <Form.Item
-              label="Last name"
-              name="lastName"
-              initialValue={user?.lastName}
-              rules={[{ required: true, message: 'Please input your last name!' }]}
+              label="Tên"
+              name="firstName"
+              initialValue={user?.firstName}
+              rules={[{ required: true, message: 'Vui lòng nhập tên của bạn!' }]}
             >
               <Input
                 size="large"
                 prefix={<UserOutlined className="site-form-item-icon" />}
-                placeholder="Input your last name"
+                placeholder="Nhập tên của bạn"
                 allowClear
               />
             </Form.Item>
@@ -131,9 +125,9 @@ const UserInformation = () => {
               label="Số điện thoại"
               name="phone"
               initialValue={user?.phone}
-              rules={[{ required: true, message: 'Please input your phone number!' }]}
+              rules={[{ required: true, message: 'Vui lòng nhập số điện thoại của bạn!' }]}
             >
-              <Input size="large" type="phone" placeholder="Input your phone" allowClear />
+              <Input size="large" type="phone" placeholder="Nhập số điện thoại của bạn" allowClear />
             </Form.Item>
           </Col>
         </Row>

@@ -40,7 +40,7 @@ function BookingAction(props: Readonly<IProps>) {
   };
 
   return (
-    <Space size="middle" className="flex gap-1">
+    <Space size="middle" className="flex gap-1" onClick={(e) => e.stopPropagation()}>
       {row.status === ENUM_BOOKING_STATUS.new && (
         <Button
           size="middle"
@@ -48,7 +48,7 @@ function BookingAction(props: Readonly<IProps>) {
             handleUpdateRow(ENUM_BOOKING_STATUS.verified, 'Xác thực đơn đặt bàn?', 'Xác thực đơn đặt bàn thành công')
           }
         >
-          Verify
+          Xác thực
         </Button>
       )}
       {row.status === ENUM_BOOKING_STATUS.verified && (
@@ -62,7 +62,7 @@ function BookingAction(props: Readonly<IProps>) {
             )
           }
         >
-          Finish
+          Đã dùng bữa
         </Button>
       )}
       {row.status === ENUM_BOOKING_STATUS.finished && (
@@ -72,11 +72,11 @@ function BookingAction(props: Readonly<IProps>) {
             handleUpdateRow(ENUM_BOOKING_STATUS.done, 'Khách hàng đã thanh toán?', 'Xác đã thanh toán thành công')
           }
         >
-          Done
+          Đã thanh toán
         </Button>
       )}
       <Button danger size="middle" onClick={handleDeleteRow}>
-        Delete
+        Xoá
       </Button>
     </Space>
   );

@@ -14,7 +14,7 @@ const Gallery = () => {
 
   return (
     <div className="text-center">
-      <span className="text-[45px] text-primary font-bold">GALLERY</span>
+      <span className="text-[45px] text-primary font-bold uppercase">Thư viện</span>
       <Row gutter={[10, 10]} className="!mx-[5px]">
         {images.map((image) => (
           <Col key={image.id} span={6} className="image-list">

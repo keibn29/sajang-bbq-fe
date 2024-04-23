@@ -14,12 +14,12 @@ const columns: TableProps<any>['columns'] = [
     key: 'id',
   },
   {
-    title: 'Name',
+    title: 'Tên món ăn',
     dataIndex: 'name',
     key: 'name',
   },
   {
-    title: 'Action',
+    title: 'Hành động',
     key: 'action',
     render: (_, record) => <TableAction row={record} apiPath={modalFormConfig.dish.apiPath} />,
   },

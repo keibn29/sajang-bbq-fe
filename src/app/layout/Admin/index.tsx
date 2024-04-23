@@ -32,11 +32,11 @@ const menu = [
   },
   {
     key: 'blog',
-    label: <Link to={URL.admin.blog}>Blog</Link>,
+    label: <Link to={URL.admin.blog}>Bài đăng</Link>,
   },
   {
     key: 'gallery',
-    label: <Link to={URL.admin.gallery}>Gallery</Link>,
+    label: <Link to={URL.admin.gallery}>Thư viện</Link>,
   },
   {
     key: 'dish',

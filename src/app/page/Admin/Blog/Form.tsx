@@ -35,12 +35,12 @@ const BlogForm = (props: IFormProps) => {
     <Form form={form} initialValues={{ remember: true }} labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
       <Row gutter={[10, 0]}>
         <Col span={12}>
-          <Form.Item label="Title" name="title" rules={[{ required: true, message: `Please input blog title!` }]}>
+          <Form.Item label="Tiêu đề" name="title" rules={[{ required: true, message: `Please input blog title!` }]}>
             <Input size="large" placeholder={`Input blog title`} allowClear />
           </Form.Item>
         </Col>
         <Col span={3}>
-          <Form.Item label="Image" name="avatar" getValueFromEvent={(evt) => evt.file.originFileObj}>
+          <Form.Item label="Hình ảnh" name="avatar" getValueFromEvent={(evt) => evt.file.originFileObj}>
             <Upload
               listType="picture-card"
               showUploadList={false}
@@ -60,7 +60,11 @@ const BlogForm = (props: IFormProps) => {
           </Col>
         )}
         <Col span={24}>
-          <Form.Item label="Content" name="content" rules={[{ required: true, message: `Please input blog content!` }]}>
+          <Form.Item
+            label="Nội dung"
+            name="content"
+            rules={[{ required: true, message: `Please input blog content!` }]}
+          >
             <CKEditor
               editor={ClassicEditor}
               data={ckData}

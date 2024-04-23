@@ -14,27 +14,27 @@ const columns: TableProps<any>['columns'] = [
     key: 'id',
   },
   {
-    title: 'Status',
+    title: 'Trạng thái đơn hàng',
     dataIndex: 'status',
     render: (_, record: DynamicKeyObject) => BOOKING_STATUS[record.status],
   },
   {
-    title: 'Branch',
+    title: 'Tên chi nhánh',
     dataIndex: 'branch',
     render: (_, record: DynamicKeyObject) => record?.branch?.name,
   },
   {
-    title: 'Customer',
+    title: 'Tên khách hàng',
     dataIndex: 'customer',
     render: (_, record: DynamicKeyObject) => `${record?.customer?.firstName} ${record?.customer?.lastName}`,
   },
   {
-    title: 'Phone number',
+    title: 'Số điện thoại khách hàng',
     dataIndex: 'phone',
     render: (_, record: DynamicKeyObject) => record?.customer?.phone,
   },
   {
-    title: 'Action',
+    title: 'Hành động',
     key: 'action',
     render: (_, record) => <BookingAction row={record} apiPath="/booking" />,
   },

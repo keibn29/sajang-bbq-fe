@@ -28,7 +28,7 @@ const Footer = () => {
         <Row className="max-w-[1300px] mx-auto py-[50px]">
           <Col span={12}>
             <div className="text-center">
-              <span className="text-xl uppercase">Follow us</span>
+              <span className="text-xl uppercase">Theo dõi chúng tôi trên</span>
               <div className="mt-[15px] flex justify-center gap-[7px]">
                 {icons.map((item) => {
                   const Icon = item.icon;

@@ -15,7 +15,7 @@ const menus = [
     url: URL.address,
   },
   {
-    text: 'Menu',
+    text: 'Thực đơn',
     url: URL.menu,
   },
   {
@@ -23,11 +23,11 @@ const menus = [
     url: URL.offer,
   },
   {
-    text: 'Blog',
+    text: 'Bài đăng',
     url: URL.blog,
   },
   {
-    text: 'Gallery',
+    text: 'Thư viện',
     url: URL.gallery,
   },
   {
@@ -68,20 +68,20 @@ const Header = () => {
               <Link
                 key={item.url}
                 to={item.url}
-                className="font-bold uppercase cursor-pointer p-[20px] hover:text-primary text-[#3c2311]"
+                className="font-bold uppercase cursor-pointer p-[20px] hover:text-primary text-[#3c2311] text-xs"
               >
                 <span>{item.text}</span>
               </Link>
             ))}
           </div>
           {!user?.id ? (
-            <Button onClick={() => handleAction('login')}>Log in</Button>
+            <Button onClick={() => handleAction('login')}>Đăng nhập</Button>
           ) : (
             <div>
               <Link to={URL.profile.information}>
                 <Avatar src={`${import.meta.env.VITE_API_ENPOINT}/${user.avatar}`} size={40} className="mr-2" />
               </Link>
-              <Button onClick={() => handleAction('logout')}>Log out</Button>
+              <Button onClick={() => handleAction('logout')}>Đăng xuất</Button>
             </div>
           )}
         </Flex>

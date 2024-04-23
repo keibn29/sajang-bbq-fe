@@ -24,7 +24,7 @@ function Singup(props: Readonly<IProps>) {
   return (
     <div>
       <div>
-        <h1 className="text-center mb-5">SIGNUP</h1>
+        <h1 className="text-center mb-5 uppercase">Đăng ký</h1>
         <Form
           name="normal_login"
           className="w-[450px]"
@@ -34,47 +34,47 @@ function Singup(props: Readonly<IProps>) {
           wrapperCol={{ span: 24 }}
         >
           <Form.Item
-            label="Email"
+            label="Tài khoản"
             name="email"
             rules={[
-              { required: true, message: 'Please input your Email!' },
-              { type: 'email', message: 'Email is not valid!' },
+              { required: true, message: 'Vui lòng nhập Email của bạn!' },
+              { type: 'email', message: 'Email không hợp lệ!' },
             ]}
           >
             <Input
               size="large"
               prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Input your email"
+              placeholder="Nhập email của bạn"
               allowClear
             />
           </Form.Item>
           <Form.Item
             label="Password"
             name="password"
-            rules={[{ required: true, message: 'Please input your Password!' }]}
+            rules={[{ required: true, message: 'Vui lòng nhập mật khẩu của bạn!' }]}
           >
             <Input
               size="large"
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
-              placeholder="Input your password"
+              placeholder="Nhập mật khẩu của bạn"
               allowClear
             />
           </Form.Item>
           <Form.Item
-            label="Repeat password"
+            label="Nhập lại mật khẩu"
             name="rePassword"
             rules={[
               {
                 required: true,
-                message: 'Please confirm your password!',
+                message: 'Vui lòng xác nhận lại mật khẩu của bạn!',
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('The new password that you entered do not match!'));
+                  return Promise.reject(new Error('Mật khẩu bạn mới nhập không khớp!'));
                 },
               }),
             ]}
@@ -83,59 +83,55 @@ function Singup(props: Readonly<IProps>) {
               size="large"
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
-              placeholder="Repeate your password"
+              placeholder="Nhập lại mật khẩu của bạn"
               allowClear
             />
           </Form.Item>
           <Row gutter={[10, 0]}>
             <Col span={12}>
-              <Form.Item
-                label="First name"
-                name="firstName"
-                rules={[{ required: true, message: 'Please input your first name!' }]}
-              >
+              <Form.Item label="Họ" name="lastName" rules={[{ required: true, message: 'Vui lòng nhập họ của bạn!' }]}>
                 <Input
                   size="large"
                   prefix={<UserOutlined className="site-form-item-icon" />}
-                  placeholder="Input your first name"
+                  placeholder="Nhập họ của bạn"
                   allowClear
                 />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                label="Last name"
-                name="lastName"
-                rules={[{ required: true, message: 'Please input your last name!' }]}
+                label="Tên"
+                name="firstName"
+                rules={[{ required: true, message: 'Vui lòng nhập tên của bạn!' }]}
               >
                 <Input
                   size="large"
                   prefix={<UserOutlined className="site-form-item-icon" />}
-                  placeholder="Input your last name"
+                  placeholder="Nhập tên của bạn"
                   allowClear
                 />
               </Form.Item>
             </Col>
           </Row>
           <Form.Item
-            label="Phone number"
+            label="Số điện thoại"
             name="phone"
-            rules={[{ required: true, message: 'Please input your phone number!' }]}
+            rules={[{ required: true, message: 'Vui lòng nhập số điện thoại của bạn!' }]}
           >
             <Input
               size="large"
               prefix={<PhoneOutlined className="site-form-item-icon" />}
-              placeholder="Input your phone number"
+              placeholder="Nhập số điện thoại của bạn"
               allowClear
             />
           </Form.Item>
           <Form.Item>
             <Button type="primary" size="large" htmlType="submit" className="w-full mb-1">
-              Signup
+              Đăng ký
             </Button>
-            Or{' '}
+            Hoặc{' '}
             <span className="text-link select-none cursor-pointer" onClick={onLogin}>
-              login now!
+              đăng nhập ngay!
             </span>
           </Form.Item>
         </Form>

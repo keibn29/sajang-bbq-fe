@@ -8,6 +8,7 @@ import Dashboard from 'app/page/Admin/Dashboard';
 import DishMangament from 'app/page/Admin/Dish';
 import GalleryMangament from 'app/page/Admin/Gallery';
 import User from 'app/page/Admin/User';
+import BlogDetails from 'app/page/BlogDetails';
 import NotFound from 'app/page/NotFound';
 import BookingHistory from 'app/page/Profile/BookingHistory';
 import UserInformation from 'app/page/Profile/Information';
@@ -75,6 +76,11 @@ const customerItems: ItemType[] = [
   {
     key: URL.booking,
     components: <Booking />,
+    layout: CUSTOMER_LAYOUT,
+  },
+  {
+    key: URL.blogdetails,
+    components: <BlogDetails />,
     layout: CUSTOMER_LAYOUT,
   },
 ];

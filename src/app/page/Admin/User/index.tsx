@@ -9,22 +9,22 @@ import { modalForm } from 'utils/app';
 
 const columns: TableProps<any>['columns'] = [
   {
-    title: 'Avatar',
+    title: 'Ảnh đại diện',
     key: 'avatar',
     render: (_, record: DynamicKeyObject) => <Avatar src={`${import.meta.env.VITE_API_ENPOINT}/${record?.avatar}`} />,
   },
   {
-    title: 'First name',
-    dataIndex: 'firstName',
-    key: 'firstName',
-  },
-  {
-    title: 'Last name',
+    title: 'Họ',
     dataIndex: 'lastName',
     key: 'lastName',
   },
   {
-    title: 'Action',
+    title: 'Tên',
+    dataIndex: 'firstName',
+    key: 'firstName',
+  },
+  {
+    title: 'Hành động',
     key: 'action',
     render: (_, record) => <TableAction row={record} apiPath={modalFormConfig.branch.apiPath} />,
   },
