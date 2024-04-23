@@ -1,20 +1,21 @@
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Button, Col, Form, Image, Input, Row } from 'antd';
+import { Button, Col, Form, Image, Input, Row } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import blog from 'assets/images/blog/blog2.jpg';
-
 import { useLocation } from 'react-router-dom';
 
 const BlogDetails = () => {
   const location = useLocation();
   const data = location.state;
+
   return (
     <div>
       <Row className="max-w-[1200px] !mx-auto py-[50px]">
         <Col span={18} className="w-full">
           <div className="text-center font-bold text-3xl">{data.title}</div>
           <Image src={`${import.meta.env.VITE_API_ENPOINT}/${data.imageUrl}`} className="h-[300px]" preview={false} />
-          <p className="text-[#777777] text-sm mt-3 line-clamp-4" dangerouslySetInnerHTML={{ __html: data.content }} />
+          <p
+            className="text-[#777777] text-sm mt-3 line-clamp-4 mb-10"
+            dangerouslySetInnerHTML={{ __html: data.content }}
+          />
           <Form initialValues={{ remember: true }} labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
             <Row gutter={[10, 0]}>
               <Col span={24}>

@@ -20,7 +20,7 @@ const Blog = () => {
                   <Col span={8} className="image-list">
                     <Image
                       src={`${import.meta.env.VITE_API_ENPOINT}/${item.imageUrl}`}
-                      className="!h-full"
+                      className="!h-[205px]"
                       preview={false}
                     />
                   </Col>
