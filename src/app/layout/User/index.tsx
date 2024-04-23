@@ -47,7 +47,9 @@ const UserLayout = (props: IProps) => {
             className="border-0 border-r-[1px] border-solid border-r-[#eeeeee]"
           >
             <div className="p-[5px]">
-              <div className="bg-image bg-home-concept w-full aspect-square rounded-md" />
+              <Link to={URL.home}>
+                <div className="bg-image bg-home-concept w-full aspect-square rounded-md" />
+              </Link>
             </div>
             <Menu mode="inline" defaultSelectedKeys={['infomation']} items={menu} />
           </Sider>

@@ -61,9 +61,9 @@ const Booking = () => {
                     </Row>
                     <p className="text-base mb-2">{branch.address}</p>
                     <Row className="space-x-5">
-                      <Button className="h-12 w-[45%]">02473036986</Button>
+                      <Button className="h-12 w-[45%] text-[17px]">{branch.phone}</Button>
                       <Button
-                        className="h-12 w-[45%]"
+                        className="h-12 w-[45%] text-[17px]"
                         type="primary"
                         onClick={() => {
                           setIsOpenModal(true);
