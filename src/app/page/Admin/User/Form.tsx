@@ -150,7 +150,7 @@ const UserForm = (props: IFormProps) => {
             <Select
               options={[
                 { value: 'ADMIN', label: 'Admin' },
-                { value: 'CUSTOMER', label: 'Normal' },
+                { value: 'CUSTOMER', label: 'Customer' },
               ]}
               size="large"
             />
