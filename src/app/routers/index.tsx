@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import AdminLayout from 'app/layout/Admin/index';
 import CustomerLayout from 'app/layout/Customer/index';
 import UserLayout from 'app/layout/User/index';
@@ -145,6 +146,11 @@ const sharedItems: ItemType[] = [
     layout: USER_LAYOUT,
   },
 ];
+
+message.config({
+  duration: 5,
+  maxCount: 3,
+});
 
 export default function Routers() {
   const items = customerItems.concat(adminItems, sharedItems);

@@ -10,10 +10,11 @@ interface IProps extends PaginationProps {
   onChangeDataTable: (data: DynamicKeyObject) => void;
   apiPath: string;
   align?: 'center' | 'right';
+  params?: DynamicKeyObject;
 }
 
 function AppPagination(props: Readonly<IProps>) {
-  const { onChangeDataTable, apiPath, align, ...nest } = props;
+  const { onChangeDataTable, apiPath, align, params = {}, ...nest } = props;
   const dispatch = useAppDispatch();
   const page = useAppSelector(selectAppPagination);
   const total = useRef<number>(0);
@@ -24,7 +25,7 @@ function AppPagination(props: Readonly<IProps>) {
 
   useEffect(() => {
     loading.on();
-    processGetQuery(apiPath, page).then((data) => {
+    processGetQuery(apiPath, { ...page, ...params }).then((data) => {
       total.current = data.count ?? 0;
       onChangeDataTable(data);
     });

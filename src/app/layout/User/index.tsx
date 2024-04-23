@@ -1,12 +1,10 @@
-import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
+import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Avatar, Button, Layout, Menu, theme } from 'antd';
-import AvatarImage from 'assets/images/concept.jpg';
 import { URL } from 'constants/url';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store';
 import { actionLogout, selectUser } from 'store/authSlice';
-import { getPageName } from 'utils/app';
 
 const { Header, Sider, Content } = Layout;
 
@@ -16,13 +14,11 @@ interface IProps {
 
 const menu = [
   {
-    key: 'admin',
-    icon: <UserOutlined />,
+    key: 'infomation',
     label: <Link to={URL.profile.information}>Thông tin cá nhân</Link>,
   },
   {
-    key: 'user',
-    icon: <UserOutlined />,
+    key: 'bookinghistory',
     label: <Link to={URL.profile.bookinghistory}>Lịch sử đặt bàn</Link>,
   },
 ];
@@ -53,7 +49,7 @@ const UserLayout = (props: IProps) => {
             <div className="p-[5px]">
               <div className="bg-image bg-home-concept w-full aspect-square rounded-md" />
             </div>
-            <Menu mode="inline" defaultSelectedKeys={[getPageName()]} items={menu} />
+            <Menu mode="inline" defaultSelectedKeys={['infomation']} items={menu} />
           </Sider>
           <Layout>
             <Header

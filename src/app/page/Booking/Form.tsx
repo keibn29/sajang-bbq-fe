@@ -1,7 +1,6 @@
 import { InfoCircleFilled, UserOutlined } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, Modal, Row, Select, Tooltip, message } from 'antd';
 import { useForm } from 'antd/es/form/Form';
-import { DefaultOptionType } from 'antd/es/select';
 import { processGetQuery, processPostQuery } from 'api';
 import dayjs from 'dayjs';
 import { DynamicKeyObject } from 'model';
@@ -10,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { useAppSelector } from 'store';
 import { selectUser } from 'store/authSlice';
 import { loading } from 'utils/app';
+import Paypal from './Paypal';
 
 const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: DynamicKeyObject }) => {
   const { isOpen, branch, onClose } = props;
@@ -25,6 +25,8 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
     branchId: branch?.id,
     dishes: [],
   });
+  const [isShowPaypalButton, setIsShowPaypalButton] = useState<boolean>(false);
+  const [createdBooking, setCreatedBooking] = useState<DynamicKeyObject>({});
 
   const handleSubmitForm = () => {
     const { scheduleId, customerId, branchId } = params;
@@ -34,9 +36,10 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
     }
 
     loading.on();
-    processPostQuery('/booking', params).then(() => {
-      handleCloseModal();
-      message.success('Đặt bàn thành công');
+    processPostQuery('/booking', params).then((res: DynamicKeyObject) => {
+      setCreatedBooking(res.booking);
+      message.success('Vui lòng thanh toán tiền đặt cọc (5$) để hoàn thiện quá trình đặt bàn');
+      setIsShowPaypalButton(true);
       loading.off();
     });
   };
@@ -47,7 +50,6 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
   };
 
   const handleChangeSelect = (value: any) => {
-    console.log('value', value);
     setParams((prev) => ({ ...prev, dishes: value }));
   };
 
@@ -68,13 +70,15 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
 
   return (
     <Modal
-      title="Đặt bàn"
+      title={<p className="text-2xl">Đặt bàn</p>}
       centered
       open={isOpen}
       width={600}
-      onOk={handleSubmitForm}
       onCancel={handleCloseModal}
+      onOk={handleSubmitForm}
+      footer={isShowPaypalButton ? false : undefined}
       maskClosable={false}
+      className="booking-form"
     >
       <Form
         form={form}
@@ -83,7 +87,7 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
         wrapperCol={{ span: 24 }}
         size="small"
       >
-        <Row gutter={[10, 0]}>
+        <Row gutter={[10, 0]} className="pt-2">
           <Col span={12}>
             <Form.Item
               label="Số bàn muốn đặt"
@@ -119,8 +123,11 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
                   { value: 1, label: '1 bàn' },
                   { value: 2, label: '2 bàn' },
                   { value: 3, label: '3 bàn' },
+                  { value: 4, label: '4 bàn' },
+                  { value: 5, label: '5 bàn' },
                 ]}
                 onChange={(value) => setParams((prev) => ({ ...prev, table: value }))}
+                disabled={isShowPaypalButton}
               />
             </Form.Item>
           </Col>
@@ -136,6 +143,7 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
                 format="DD/MM/YYYY"
                 size="large"
                 onChange={(date, dateString) => setParams((prev) => ({ ...prev, date: dateString }))}
+                disabled={isShowPaypalButton}
               />
             </Form.Item>
           </Col>
@@ -149,6 +157,7 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
                       type={params.scheduleId === schedule.id ? 'primary' : 'default'}
                       className="w-full"
                       onClick={() => setParams((prev) => ({ ...prev, scheduleId: schedule.id }))}
+                      disabled={isShowPaypalButton}
                     >
                       {schedule.time}
                     </Button>
@@ -168,11 +177,18 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
                 onChange={handleChangeSelect}
                 showSearch={false}
                 allowClear
+                disabled={isShowPaypalButton}
               />
             </Form.Item>
           </Col>
         </Row>
       </Form>
+      <Paypal
+        isShow={isShowPaypalButton}
+        onCloseModal={handleCloseModal}
+        createdBooking={createdBooking}
+        onChangeCreatedBooking={setCreatedBooking}
+      />
     </Modal>
   );
 };

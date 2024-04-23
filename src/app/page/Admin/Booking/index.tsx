@@ -14,23 +14,33 @@ const columns: TableProps<any>['columns'] = [
     key: 'id',
   },
   {
-    title: 'Trạng thái đơn hàng',
-    dataIndex: 'status',
+    title: 'Trạng thái',
+    key: 'status',
     render: (_, record: DynamicKeyObject) => BOOKING_STATUS[record.status],
   },
   {
-    title: 'Tên chi nhánh',
-    dataIndex: 'branch',
+    title: 'Thời gian',
+    key: 'time',
+    render: (_, record: DynamicKeyObject) => record.schedule?.time,
+  },
+  {
+    title: 'Ngày',
+    dataIndex: 'date',
+    key: 'date',
+  },
+  {
+    title: 'Chi nhánh',
+    key: 'branch',
     render: (_, record: DynamicKeyObject) => record?.branch?.name,
   },
   {
-    title: 'Tên khách hàng',
-    dataIndex: 'customer',
+    title: 'Khách hàng',
+    key: 'customer',
     render: (_, record: DynamicKeyObject) => `${record?.customer?.firstName} ${record?.customer?.lastName}`,
   },
   {
-    title: 'Số điện thoại khách hàng',
-    dataIndex: 'phone',
+    title: 'Số điện thoại',
+    key: 'phone',
     render: (_, record: DynamicKeyObject) => record?.customer?.phone,
   },
   {

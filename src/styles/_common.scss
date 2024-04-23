@@ -139,3 +139,11 @@
 .ck-editor__editable_inline {
   height: 350px;
 }
+
+// paypal
+.paypal-button-container {
+  iframe {
+    height: 45px !important;
+    border-radius: 5px !important;
+  }
+}

@@ -62,7 +62,11 @@ const Header = () => {
       </div>
       <div className="w-full bg-white h-[70px] shadow-lg">
         <Flex className="max-w-[1425px] h-[100%] px-[90px] mx-auto" justify="space-between" align="center">
-          <Link to={URL.home} className="bg-logo bg-cover bg bg-center w-[100px] h-[50px]" />
+          <Link
+            to={URL.home}
+            className="bg-logo bg-cover bg bg-center w-[100px] h-[50px]"
+            onClick={() => scrollTo(0, 0)}
+          />
           <div>
             {menus.map((item) => (
               <Link
