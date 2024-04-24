@@ -26,7 +26,7 @@ const columns: TableProps<any>['columns'] = [
   {
     title: 'Hành động',
     key: 'action',
-    render: (_, record) => <TableAction row={record} apiPath={modalFormConfig.branch.apiPath} />,
+    render: (_, record) => <TableAction row={record} apiPath={modalFormConfig.user.apiPath} />,
   },
 ];
 
