@@ -29,7 +29,15 @@ const Blog = () => {
             className="px-3 min-h-[475px]"
           >
             <div className="h-full border-b-solid border-b-[1px] border-b-[#dddddd] pb-2">
-              <Image src={`${import.meta.env.VITE_API_ENPOINT}/${item.imageUrl}`} className="!h-full" preview={false} />
+              <div className="h-[238px]	w-full">
+                <Image
+                  height="100%"
+                  width="100%"
+                  src={`${import.meta.env.VITE_API_ENPOINT}/${item.imageUrl}`}
+                  preview={false}
+                  className="object-cover"
+                />
+              </div>
               <p className="uppercase text-[#3d2d22] text-lg mt-5">{item.title}</p>
               <p className="text-xs text-[#adadad]">Tháng Mười Hai 27, 2023</p>
               <p
