@@ -17,6 +17,7 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
   const [form] = useForm();
   const [schedules, setSchedules] = useState<any>([]);
   const [dishes, setDishes] = useState<any>([]);
+  const [mainDishes, setMainDishes] = useState<any>([]);
   const [params, setParams] = useState<DynamicKeyObject>({
     table: 1,
     date: moment().format('DD/MM/YYYY'),
@@ -56,18 +57,29 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
   useEffect(() => {
     processGetQuery('/schedule').then((data) => setSchedules(data.schedules));
     processGetQuery('/dish').then((data) => {
-      const nextDishes = data.dishes.map((dish: DynamicKeyObject) => ({
-        value: dish.id,
-        label: dish.name,
-      }));
+      const nextDishes = data.dishes
+        .filter((dish: DynamicKeyObject) => dish.role == '2')
+        .map((dish: DynamicKeyObject) => ({
+          value: dish.id,
+          label: dish.name + ' Giá: ' + dish.price + ' đ ',
+          price: dish.price,
+        }));
+      const mainDishes = data.dishes
+        .filter((dish: DynamicKeyObject) => dish.role == '1')
+        .map((dish: DynamicKeyObject) => ({
+          value: dish.id,
+          label: dish.name + ' Giá: ' + dish.price + ' đ ',
+          price: dish.price,
+        }));
       setDishes(nextDishes);
+      setMainDishes(mainDishes);
     });
   }, []);
 
   useEffect(() => {
     setParams((prev) => ({ ...prev, branchId: branch?.id }));
   }, [branch]);
-
+  console.log('data', params.date);
   return (
     <Modal
       title={<p className="text-2xl">Đặt bàn</p>}
@@ -164,6 +176,21 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
                   </Col>
                 ))}
               </Row>
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="Món ăn chính">
+              <Select
+                size="large"
+                mode="multiple"
+                placeholder="Chọn ăn đặt kèm"
+                style={{ flex: 1 }}
+                options={mainDishes}
+                onChange={handleChangeSelect}
+                showSearch={false}
+                allowClear
+                disabled={isShowPaypalButton}
+              />
             </Form.Item>
           </Col>
           <Col span={24}>
