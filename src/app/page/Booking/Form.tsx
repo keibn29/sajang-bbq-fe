@@ -18,6 +18,8 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
   const [schedules, setSchedules] = useState<any>([]);
   const [dishes, setDishes] = useState<any>([]);
   const [mainDishes, setMainDishes] = useState<any>([]);
+  const [main, setMain] = useState<any>([]);
+  const [sub, setSub] = useState<any>([]);
   const [params, setParams] = useState<DynamicKeyObject>({
     table: 1,
     date: moment().format('DD/MM/YYYY'),
@@ -35,9 +37,10 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
       message.error('Vui lòng bổ sung đầy đủ thông tin');
       return;
     }
-
+    const updatedate = { ...params, dishes: main.concat(sub) };
+    console.log(updatedate);
     loading.on();
-    processPostQuery('/booking', params).then((res: DynamicKeyObject) => {
+    processPostQuery('/booking', updatedate).then((res: DynamicKeyObject) => {
       setCreatedBooking(res.booking);
       message.success('Vui lòng thanh toán tiền đặt cọc (5$) để hoàn thiện quá trình đặt bàn');
       setIsShowPaypalButton(true);
@@ -50,10 +53,12 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
     form.resetFields();
   };
 
-  const handleChangeSelect = (value: any) => {
-    setParams((prev) => ({ ...prev, dishes: value }));
+  const handleChangeMainSelect = (value: any) => {
+    setMain(value);
   };
-
+  const handleChangeSubSelect = (value: any) => {
+    setSub(value);
+  };
   useEffect(() => {
     processGetQuery('/schedule').then((data) => setSchedules(data.schedules));
     processGetQuery('/dish').then((data) => {
@@ -186,7 +191,7 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
                 placeholder="Chọn ăn đặt kèm"
                 style={{ flex: 1 }}
                 options={mainDishes}
-                onChange={handleChangeSelect}
+                onChange={handleChangeMainSelect}
                 showSearch={false}
                 allowClear
                 disabled={isShowPaypalButton}
@@ -201,7 +206,7 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
                 placeholder="Chọn ăn đặt kèm"
                 style={{ flex: 1 }}
                 options={dishes}
-                onChange={handleChangeSelect}
+                onChange={handleChangeSubSelect}
                 showSearch={false}
                 allowClear
                 disabled={isShowPaypalButton}
