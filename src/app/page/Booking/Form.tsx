@@ -59,6 +59,16 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
   const handleChangeSubSelect = (value: any) => {
     setSub(value);
   };
+
+  const calculateTotalPrice = () => {
+    const selectedMainDishes = mainDishes.filter((dish: DynamicKeyObject) => main.includes(dish.value));
+    const selectedSubDishes = dishes.filter((dish: DynamicKeyObject) => sub.includes(dish.value));
+    const totalPrice = selectedMainDishes
+      .concat(selectedSubDishes)
+      .reduce((acc: number, dish: DynamicKeyObject) => acc + dish.price, 0);
+    return totalPrice;
+  };
+
   useEffect(() => {
     processGetQuery('/schedule').then((data) => setSchedules(data.schedules));
     processGetQuery('/dish').then((data) => {
@@ -84,7 +94,7 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
   useEffect(() => {
     setParams((prev) => ({ ...prev, branchId: branch?.id }));
   }, [branch]);
-  console.log('data', params.date);
+
   return (
     <Modal
       title={<p className="text-2xl">Đặt bàn</p>}
@@ -212,6 +222,11 @@ const BookingForm = (props: { isOpen: boolean; onClose: () => void; branch: Dyna
                 disabled={isShowPaypalButton}
               />
             </Form.Item>
+          </Col>
+          <Col span={24}>
+            <p className="mt-2 font-bold text-base">
+              Tổng số tiền: {calculateTotalPrice().toLocaleString('vi-VN')} VNĐ
+            </p>
           </Col>
         </Row>
       </Form>

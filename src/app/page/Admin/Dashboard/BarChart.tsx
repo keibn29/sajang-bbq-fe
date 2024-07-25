@@ -4,9 +4,11 @@ import { processGetQuery } from 'api';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
+import { Col, Row } from 'antd';
 
 // Extend dayjs with the isBetween plugin
 dayjs.extend(isBetween);
+
 interface Revenue {
   id: number;
   date: string;
@@ -40,6 +42,10 @@ const BarChart = () => {
     ],
   });
 
+  const [totalRevenue, setTotalRevenue] = useState(0);
+  const [thisWeekTotal, setThisWeekTotal] = useState(0);
+  const [lastWeekTotal, setLastWeekTotal] = useState(0);
+
   const options: ChartOptions<'bar'> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -61,19 +67,26 @@ const BarChart = () => {
       const thisWeekRevenue = [0, 0, 0, 0, 0, 0, 0];
       const lastWeekRevenue = [0, 0, 0, 0, 0, 0, 0];
 
+      let total = 0;
+      let thisWeekSum = 0;
+      let lastWeekSum = 0;
+
       // Get the start of the current week and last week
       const startOfWeek = dayjs().startOf('week').add(1, 'day'); // Start from Monday
       const startOfLastWeek = startOfWeek.subtract(1, 'week');
 
       revenues.forEach((revenue) => {
         const revenueDate = dayjs(revenue.date, 'DD/MM/YYYY');
+        total += revenue.revenue;
 
         if (revenueDate.isBetween(startOfWeek, startOfWeek.add(6, 'day'), null, '[]')) {
           const dayOfWeek = (revenueDate.day() + 6) % 7; // Adjust to make Monday the first day
           thisWeekRevenue[dayOfWeek] = revenue.revenue;
+          thisWeekSum += revenue.revenue;
         } else if (revenueDate.isBetween(startOfLastWeek, startOfLastWeek.add(6, 'day'), null, '[]')) {
           const dayOfWeek = (revenueDate.day() + 6) % 7; // Adjust to make Monday the first day
           lastWeekRevenue[dayOfWeek] = revenue.revenue;
+          lastWeekSum += revenue.revenue;
         }
       });
 
@@ -100,12 +113,27 @@ const BarChart = () => {
           },
         ],
       });
+
+      setTotalRevenue(total);
+      setThisWeekTotal(thisWeekSum);
+      setLastWeekTotal(lastWeekSum);
     });
   }, []);
 
   return (
     <div className="h-[330px]">
       <h2>Doanh thu</h2>
+      <Row>
+        <Col span={8}>
+          <p>Tổng doanh thu: {totalRevenue.toLocaleString()} VNĐ</p>
+        </Col>
+        <Col span={8}>
+          <p>Doanh thu tuần này: {thisWeekTotal.toLocaleString()} VNĐ</p>
+        </Col>
+        <Col span={8}>
+          <p>Doanh thu tuần trước: {lastWeekTotal.toLocaleString()} VNĐ</p>
+        </Col>
+      </Row>
       <Bar data={chartData} options={options} width={100} height={50} />
     </div>
   );
